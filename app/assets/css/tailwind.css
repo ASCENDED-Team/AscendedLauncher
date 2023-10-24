@@ -1,8 +1,773 @@
 /* Github Code Highlighting. */
-@import "../../../node_modules/github-syntax-dark/lib/github-dark.css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+/*!
+ * GitHub Dark v0.5.0
+ * Copyright (c) 2012 - 2017 GitHub, Inc.
+ * Licensed under MIT (https://github.com/primer/github-syntax-theme-generator/blob/master/LICENSE)
+ */
+
+.pl-c /* comment, punctuation.definition.comment, string.comment */ {
+  color: #959da5;
+}
+
+.pl-c1 /* constant, entity.name.constant, variable.other.constant, variable.language, support, meta.property-name, support.constant, support.variable, meta.module-reference, markup.quote, markup.raw, meta.diff.header */,
+.pl-s .pl-v /* string variable */ {
+  color: #c8e1ff;
+}
+
+.pl-e /* entity */,
+.pl-en /* entity.name */ {
+  color: #b392f0;
+}
+
+.pl-smi /* variable.parameter.function, storage.modifier.package, storage.modifier.import, storage.type.java, variable.other */,
+.pl-s .pl-s1 /* string source */ {
+  color: #f6f8fa;
+}
+
+.pl-ent /* entity.name.tag */ {
+  color: #7bcc72;
+}
+
+.pl-k /* keyword, storage, storage.type */ {
+  color: #ea4a5a;
+}
+
+.pl-s /* string */,
+.pl-pds /* punctuation.definition.string, source.regexp, string.regexp.character-class */,
+.pl-s .pl-pse .pl-s1 /* string punctuation.section.embedded source */,
+.pl-sr /* string.regexp */,
+.pl-sr .pl-cce /* string.regexp constant.character.escape */,
+.pl-sr .pl-sre /* string.regexp source.ruby.embedded */,
+.pl-sr .pl-sra /* string.regexp string.regexp.arbitrary-repitition */ {
+  color: #79b8ff;
+}
+
+.pl-v /* variable */,
+.pl-ml /* markup.list, sublimelinter.mark.warning */ {
+  color: #fb8532;
+}
+
+.pl-bu /* invalid.broken, invalid.deprecated, invalid.unimplemented, message.error, brackethighlighter.unmatched, sublimelinter.mark.error */ {
+  color: #d73a49;
+}
+
+.pl-ii /* invalid.illegal */ {
+  color: #fafbfc;
+  background-color: #d73a49;
+}
+
+.pl-c2 /* carriage-return */ {
+  color: #fafbfc;
+  background-color: #d73a49;
+}
+
+.pl-c2::before /* carriage-return */ {
+  content: "^M";
+}
+
+.pl-sr .pl-cce /* string.regexp constant.character.escape */ {
+  font-weight: bold;
+  color: #7bcc72;
+}
+
+.pl-mh /* markup.heading */,
+.pl-mh .pl-en /* markup.heading entity.name */,
+.pl-ms /* meta.separator */ {
+  font-weight: bold;
+  color: #0366d6;
+}
+
+.pl-mi /* markup.italic */ {
+  font-style: italic;
+  color: #f6f8fa;
+}
+
+.pl-mb /* markup.bold */ {
+  font-weight: bold;
+  color: #f6f8fa;
+}
+
+.pl-md /* markup.deleted, meta.diff.header.from-file, punctuation.definition.deleted */ {
+  color: #b31d28;
+  background-color: #ffeef0;
+}
+
+.pl-mi1 /* markup.inserted, meta.diff.header.to-file, punctuation.definition.inserted */ {
+  color: #176f2c;
+  background-color: #f0fff4;
+}
+
+.pl-mc /* markup.changed, punctuation.definition.changed */ {
+  color: #b08800;
+  background-color: #fffdef;
+}
+
+.pl-mi2 /* markup.ignored, markup.untracked */ {
+  color: #2f363d;
+  background-color: #959da5;
+}
+
+.pl-mdr /* meta.diff.range */ {
+  font-weight: bold;
+  color: #b392f0;
+}
+
+.pl-mo /* meta.output */ {
+  color: #0366d6;
+}
+
+.pl-ba /* brackethighlighter.tag, brackethighlighter.curly, brackethighlighter.round, brackethighlighter.square, brackethighlighter.angle, brackethighlighter.quote */ {
+  color: #ffeef0;
+}
+
+.pl-sg /* sublimelinter.gutter-mark */ {
+  color: #6a737d;
+}
+
+.pl-corl /* constant.other.reference.link, string.other.link */ {
+  text-decoration: underline;
+  color: #79b8ff;
+}
+
+/* ! tailwindcss v3.3.4 | MIT License | https://tailwindcss.com */
+
+/*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  /* 1 */
+  border-width: 0;
+  /* 2 */
+  border-style: solid;
+  /* 2 */
+  border-color: #e5e7eb;
+  /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
+*/
+
+html {
+  line-height: 1.5;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -moz-tab-size: 4;
+  /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4;
+  /* 3 */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* 4 */
+  font-feature-settings: normal;
+  /* 5 */
+  font-variation-settings: normal;
+  /* 6 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0;
+  /* 1 */
+  line-height: inherit;
+  /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  border-top-width: 1px;
+  /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font family by default.
+2. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0;
+  /* 1 */
+  border-color: inherit;
+  /* 2 */
+  border-collapse: collapse;
+  /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-feature-settings: inherit;
+  /* 1 */
+  font-variation-settings: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  font-weight: inherit;
+  /* 1 */
+  line-height: inherit;
+  /* 1 */
+  color: inherit;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  padding: 0;
+  /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+  /* 1 */
+  background-color: transparent;
+  /* 2 */
+  background-image: none;
+  /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+
+dialog {
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1;
+  /* 1 */
+  color: #9ca3af;
+  /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  /* 1 */
+  vertical-align: middle;
+  /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+
+[hidden] {
+  display: none;
+}
+
+*, ::before, ::after /* comment, punctuation.definition.comment, string.comment */ {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+::backdrop /* comment, punctuation.definition.comment, string.comment */ {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+}
+
+.container /* comment, punctuation.definition.comment, string.comment */ {
+  width: 100%;
+}
+
+@media (min-width: 640px) /* comment, punctuation.definition.comment, string.comment */ {
+  .container /* comment, punctuation.definition.comment, string.comment */ {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) /* comment, punctuation.definition.comment, string.comment */ {
+  .container /* comment, punctuation.definition.comment, string.comment */ {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) /* comment, punctuation.definition.comment, string.comment */ {
+  .container /* comment, punctuation.definition.comment, string.comment */ {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) /* comment, punctuation.definition.comment, string.comment */ {
+  .container /* comment, punctuation.definition.comment, string.comment */ {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) /* comment, punctuation.definition.comment, string.comment */ {
+  .container /* comment, punctuation.definition.comment, string.comment */ {
+    max-width: 1536px;
+  }
+}
+
+.visible /* comment, punctuation.definition.comment, string.comment */ {
+  visibility: visible;
+}
+
+.static /* comment, punctuation.definition.comment, string.comment */ {
+  position: static;
+}
+
+.fixed /* comment, punctuation.definition.comment, string.comment */ {
+  position: fixed;
+}
+
+.absolute /* comment, punctuation.definition.comment, string.comment */ {
+  position: absolute;
+}
+
+.relative /* comment, punctuation.definition.comment, string.comment */ {
+  position: relative;
+}
+
+.block /* comment, punctuation.definition.comment, string.comment */ {
+  display: block;
+}
+
+.flex /* comment, punctuation.definition.comment, string.comment */ {
+  display: flex;
+}
+
+.inline-flex /* comment, punctuation.definition.comment, string.comment */ {
+  display: inline-flex;
+}
+
+.hidden /* comment, punctuation.definition.comment, string.comment */ {
+  display: none;
+}
+
+.h-12 /* comment, punctuation.definition.comment, string.comment */ {
+  height: 3rem;
+}
+
+.h-4 /* comment, punctuation.definition.comment, string.comment */ {
+  height: 1rem;
+}
+
+.bg-slate-800 /* comment, punctuation.definition.comment, string.comment */ {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+}
+
+.bg-slate-100 /* comment, punctuation.definition.comment, string.comment */ {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.blur /* comment, punctuation.definition.comment, string.comment */ {
+  --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.filter /* comment, punctuation.definition.comment, string.comment */ {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.transition /* comment, punctuation.definition.comment, string.comment */ {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
 
 /*******************************************************************************
  *                                                                             *
@@ -12,16 +777,19 @@
 
 @font-face {
   font-family: "Avenir Book";
+
   src: url("../fonts/Avenir-Book.ttf");
 }
 
 @font-face {
   font-family: "Avenir Medium";
+
   src: url("../fonts/Avenir-Medium.ttf");
 }
 
 @font-face {
   font-family: "Ringbearer";
+
   src: url("../fonts/Ringbearer.ttf");
 }
 
@@ -32,6 +800,7 @@
  ******************************************************************************/
 
 /* Reset body, html, and div presets. */
+
 body,
 html,
 div {
@@ -40,12 +809,14 @@ div {
 }
 
 /* Reset p presets. */
+
 p {
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
 }
 
 /* Set default font and color. */
+
 body,
 button {
   font-family: "Avenir Book";
@@ -64,6 +835,7 @@ button {
  ******************************************************************************/
 
 /* Frame Bar */
+
 #frameBar {
   position: relative;
   z-index: 100;
@@ -75,6 +847,7 @@ button {
 }
 
 /* Undraggable region on the top of the frame. */
+
 #frameResizableTop {
   height: 2px;
   width: 100%;
@@ -82,18 +855,21 @@ button {
 }
 
 /* Flexbox to wrap the main frame content. */
+
 #frameMain {
   display: flex;
   height: 20px;
 }
 
 /* Undraggable region on the left and right of the frame. */
+
 .frameResizableVert {
   width: 2px;
   -webkit-app-region: no-drag;
 }
 
 /* Main frame content for windows. */
+
 #frameContentWin {
   display: flex;
   justify-content: space-between;
@@ -102,6 +878,7 @@ button {
 }
 
 /* Main frame content for darwin. */
+
 #frameContentDarwin {
   display: flex;
   justify-content: flex-start;
@@ -111,9 +888,11 @@ button {
 }
 
 /* Frame logo (windows only). */
+
 #frameTitleDock {
   padding: 0px 10px;
 }
+
 #frameTitleText {
   font-size: 14px;
   font-family: "Avenir Medium";
@@ -121,6 +900,7 @@ button {
 }
 
 /* Windows frame button dock. */
+
 #frameButtonDockWin {
   -webkit-app-region: no-drag !important;
   position: relative;
@@ -128,11 +908,13 @@ button {
   right: -2px;
   height: 22px;
 }
+
 #frameButtonDockWin > .frameButton:not(:first-child) {
   margin-left: -4px;
 }
 
 /* Darwin frame button dock: NaN; */
+
 #frameButtonDockDarwin {
   -webkit-app-region: no-drag !important;
   position: relative;
@@ -141,6 +923,7 @@ button {
 }
 
 /* Windows Frame Button Styles. */
+
 .frameButton {
   background: none;
   border: none;
@@ -148,27 +931,33 @@ button {
   width: 39px;
   cursor: pointer;
 }
+
 .frameButton:hover,
 .frameButton:focus {
   background: rgba(189, 189, 189, 0.43);
 }
+
 .frameButton:active {
   background: rgba(156, 156, 156, 0.43);
 }
+
 .frameButton:focus {
   outline: 0px;
 }
 
 /* Close button is red. */
+
 #frameButton_close:hover,
 #frameButton_close:focus {
   background: rgba(255, 53, 53, 0.61) !important;
 }
+
 #frameButton_close:active {
   background: rgba(235, 0, 0, 0.61) !important;
 }
 
 /* Darwin Frame Button Styles. */
+
 .frameButtonDarwin {
   height: 12px;
   width: 12px;
@@ -178,6 +967,7 @@ button {
   -webkit-app-region: no-drag !important;
   cursor: pointer;
 }
+
 .frameButtonDarwin:focus {
   outline: 0px;
 }
@@ -185,10 +975,12 @@ button {
 #frameButtonDarwin_close {
   background-color: #e74c32;
 }
+
 #frameButtonDarwin_close:hover,
 #frameButtonDarwin_close:focus {
   background-color: #ff9a8a;
 }
+
 #frameButtonDarwin_close:active {
   background-color: #ff8d7b;
 }
@@ -196,10 +988,12 @@ button {
 #frameButtonDarwin_minimize {
   background-color: #fed045;
 }
+
 #frameButtonDarwin_minimize:hover,
 #frameButtonDarwin_minimize:focus {
   background-color: #ffe9a9;
 }
+
 #frameButtonDarwin_minimize:active {
   background-color: #ffde7b;
 }
@@ -207,10 +1001,12 @@ button {
 #frameButtonDarwin_restoredown {
   background-color: #96e734;
 }
+
 #frameButtonDarwin_restoredown:hover,
 #frameButtonDarwin_restoredown:focus {
   background-color: #d6ffa6;
 }
+
 #frameButtonDarwin_restoredown:active {
   background-color: #bfff76;
 }
@@ -314,6 +1110,7 @@ button {
 }
 
 /* Login button styles. */
+
 #welcomeButton {
   background: none;
   font-weight: bold;
@@ -328,19 +1125,23 @@ button {
   margin-top: 5%;
   margin-bottom: -5%;
 }
+
 #welcomeButton:disabled {
   color: rgba(255, 255, 255, 0.75);
   pointer-events: none;
 }
+
 #welcomeButton:hover,
 #welcomeButton:focus {
   text-shadow: 0px 0px 20px #fff;
   outline: none;
 }
+
 #welcomeButton:active {
   color: #c7c7c7;
   text-shadow: 0px 0px 20px #c7c7c7;
 }
+
 #welcomeSVG {
   -webkit-transform: translate3d(0, 0, 0);
   overflow: visible;
@@ -350,16 +1151,20 @@ button {
   width: 20px;
   height: 20px;
 }
+
 #welcomeButton:hover #welcomeSVG,
 #welcomeButton:focus #welcomeSVG {
   -webkit-filter: drop-shadow(0px 0px 2px #fff);
 }
+
 #welcomeButton:active #welcomeSVG .arrowLine {
   stroke: #c7c7c7;
 }
+
 #welcomeButton:active #welcomeSVG {
   -webkit-filter: drop-shadow(0px 0px 2px #c7c7c7);
 }
+
 #welcomeButton:disabled #welcomeSVG .arrowLine {
   stroke: rgba(255, 255, 255, 0.75);
 }
@@ -376,6 +1181,7 @@ button {
  ******************************************************************************/
 
 /* Styles for dimmer login span. */
+
 .loginSpanDim {
   font-size: 12px;
   color: #848484;
@@ -383,6 +1189,7 @@ button {
 }
 
 /* Main login container. */
+
 #loginContainer {
   position: relative;
   display: flex;
@@ -395,6 +1202,7 @@ button {
 }
 
 /* Login cancel button styles. */
+
 #loginCancelContainer {
   position: absolute;
   top: 5%;
@@ -402,6 +1210,7 @@ button {
 }
 
 /* Login cancel button styles. */
+
 #loginCancelButton {
   background: none;
   border: none;
@@ -409,28 +1218,34 @@ button {
   cursor: pointer;
   transition: 0.25s ease;
 }
+
 #loginCancelButton:hover #loginCancelIcon,
 #loginCancelButton:hover #loginCancelText,
 #loginCancelButton:focus #loginCancelIcon,
 #loginCancelButton:focus #loginCancelText {
   text-shadow: 0px 0px 20px white;
 }
+
 #loginCancelButton:hover #loginCancelIcon,
 #loginCancelButton:focus #loginCancelIcon {
   box-shadow: 0px 0px 20px white;
 }
+
 #loginCancelButton:active #loginCancelIcon,
 #loginCancelButton:active #loginCancelText {
   text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75);
   color: rgba(255, 255, 255, 0.75);
   border-color: rgba(255, 255, 255, 0.75);
 }
+
 #loginCancelButton:active #loginCancelIcon {
   box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75);
 }
+
 #loginCancelButton:disabled {
   pointer-events: none;
 }
+
 #loginCancelButton:disabled #loginCancelIcon,
 #loginCancelButton:disabled #loginCancelText {
   color: rgba(255, 255, 255, 0.75);
@@ -438,6 +1253,7 @@ button {
 }
 
 /* The X in a circle icon for the cancel button. */
+
 #loginCancelIcon {
   border-radius: 50%;
   border: 1px solid white;
@@ -450,13 +1266,16 @@ button {
   margin-bottom: 5px;
   transition: 0.25s ease;
 }
+
 /* Text for the login cancel button. */
+
 #loginCancelText {
   font-size: 15px;
   transition: 0.25s ease;
 }
 
 /* Login content wrapper. */
+
 #loginContent {
   display: flex;
   justify-content: center;
@@ -466,6 +1285,7 @@ button {
 }
 
 /* Login form. */
+
 #loginForm {
   display: flex;
   flex-direction: column;
@@ -474,6 +1294,7 @@ button {
 }
 
 /* Login form anchor styles. */
+
 #loginForm a {
   font-size: 12px;
   color: #848484;
@@ -481,16 +1302,19 @@ button {
   text-decoration: none;
   transition: 0.25s ease;
 }
+
 #loginForm a:hover,
 #loginForm a:focus {
   color: #a2a2a2;
   outline: none;
 }
+
 #loginForm a:active {
   color: #8b8b8b;
 }
 
 /* Logo on login form. */
+
 #loginImageSeal {
   border-radius: 50%;
   border: 2px solid #cad7e1;
@@ -502,6 +1326,7 @@ button {
 }
 
 /* Header on login view. */
+
 #loginSubheader {
   font-family: "Avenir Medium";
   margin-bottom: 25px;
@@ -511,6 +1336,7 @@ button {
 }
 
 /* Container to organize login field elements. */
+
 .loginFieldContainer {
   position: relative;
   display: flex;
@@ -520,6 +1346,7 @@ button {
 }
 
 /* SVG icons on the login view. */
+
 .loginSVG {
   fill: #fff;
   height: 20px;
@@ -527,6 +1354,7 @@ button {
 }
 
 /* Span which displays errors related to login field content. */
+
 .loginErrorSpan {
   font-family: "Avenir Medium";
   font-weight: bold;
@@ -568,6 +1396,7 @@ button {
 }
 
 /* Login text input styles. */
+
 .loginField {
   font-family: "Avenir Book";
   background: none;
@@ -584,12 +1413,15 @@ button {
   font-size: 10px;
   letter-spacing: 1px;
 }
+
 .loginField:focus {
   outline: none;
 }
+
 .loginField:disabled {
   color: rgba(255, 255, 255, 0.5);
 }
+
 .loginField::-webkit-input-placeholder {
   color: rgba(255, 255, 255, 0.75);
   font-size: 10px;
@@ -597,16 +1429,19 @@ button {
   text-align: center;
   font-weight: bold;
 }
+
 .loginField:focus::-webkit-input-placeholder {
   color: transparent;
 }
 
 /* Add spacing between password field and options bar. */
+
 #labelPassword {
   margin-bottom: 13px;
 }
 
 /* Container which contains the forgot and remember options. */
+
 #loginOptions {
   display: flex;
   justify-content: space-between;
@@ -614,12 +1449,14 @@ button {
 }
 
 /* Remember option text. */
+
 #loginRememberText {
   padding-right: 10px;
   transition: 0.25s ease;
 }
 
 /* Login button styles. */
+
 #loginButton {
   background: none;
   font-weight: bold;
@@ -632,22 +1469,27 @@ button {
   right: -20px;
   transition: 0.5s ease;
 }
+
 #loginButton:disabled {
   color: rgba(255, 255, 255, 0.75);
   pointer-events: none;
 }
+
 #loginButton[loading] {
   color: #fff;
 }
+
 #loginButton:hover,
 #loginButton:focus {
   text-shadow: 0px 0px 20px #fff;
   outline: none;
 }
+
 #loginButton:active {
   color: #c7c7c7;
   text-shadow: 0px 0px 20px #c7c7c7;
 }
+
 #loginSVG {
   -webkit-transform: translate3d(0, 0, 0);
   overflow: visible;
@@ -657,16 +1499,20 @@ button {
   width: 20px;
   height: 20px;
 }
+
 #loginButton:hover #loginSVG,
 #loginButton:focus #loginSVG {
   -webkit-filter: drop-shadow(0px 0px 2px #fff);
 }
+
 #loginButton:active #loginSVG .arrowLine {
   stroke: #c7c7c7;
 }
+
 #loginButton:active #loginSVG {
   -webkit-filter: drop-shadow(0px 0px 2px #c7c7c7);
 }
+
 #loginButton:disabled #loginSVG .arrowLine {
   stroke: rgba(255, 255, 255, 0.75);
 }
@@ -680,6 +1526,7 @@ button {
 #loginButton[loading] #loginSVG {
   display: none;
 }
+
 #loginButton[loading] .circle-loader,
 #loginButton #loginSVG {
   display: initial;
@@ -700,20 +1547,24 @@ button {
   width: 16px;
   height: 16px;
 }
+
 .load-complete {
   animation: none;
   border-color: #ffffff;
   transition: border 500ms ease-out;
 }
+
 .checkmark {
   display: none;
 }
+
 .checkmark.draw:after {
   animation-duration: 800ms;
   animation-timing-function: ease;
   animation-name: checkmark;
   transform: scaleX(-1) rotate(135deg);
 }
+
 .checkmark:after {
   opacity: 1;
   height: 8px;
@@ -726,30 +1577,36 @@ button {
   top: 8px;
   position: absolute;
 }
+
 @keyframes loader-spin {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
+
 @keyframes checkmark {
   0% {
     height: 0;
     width: 0;
     opacity: 1;
   }
+
   20% {
     height: 0;
     width: 4px;
     opacity: 1;
   }
+
   40% {
     height: 8px;
     width: 4px;
     opacity: 1;
   }
+
   100% {
     height: 8px;
     width: 4px;
@@ -780,6 +1637,7 @@ button {
 }*/
 
 /* Disclaimer container. */
+
 #loginDisclaimer {
   display: flex;
   flex-direction: column;
@@ -788,11 +1646,13 @@ button {
 }
 
 /* Add spacing between register anchor and disclaimer. */
+
 #loginRegisterSpan {
   margin-bottom: 5px;
 }
 
 /* Disclaimer text styles. */
+
 .loginDisclaimerText {
   font-size: 7px;
   color: #848484;
@@ -805,6 +1665,7 @@ button {
 * * */
 
 /* Checkbox container. */
+
 #checkmarkContainer {
   display: flex;
   justify-content: flex-end;
@@ -816,6 +1677,7 @@ button {
 }
 
 /* Hide the default checkbox. */
+
 #checkmarkContainer input {
   opacity: 0;
   cursor: pointer;
@@ -823,6 +1685,7 @@ button {
 }
 
 /* Create a custom checkbox. */
+
 .loginCheckmark {
   position: relative;
   height: 10px;
@@ -832,31 +1695,43 @@ button {
   background: none;
   transition: 0.25s ease;
 }
+
 /* On hover and focus, add a grey border color. */
+
 #checkmarkContainer:hover input ~ *,
 #checkmarkContainer input:focus ~ * {
   color: #a2a2a2;
   border-color: #a2a2a2;
 }
+
 /* On keydown, darken the checkbox a bit. */
+
 #checkmarkContainer input:active ~ *:not(#loginRememberText) {
   color: #8d8d8d;
   border-color: #8d8d8d;
 }
+
 #checkmarkContainer[disabled] {
   pointer-events: none;
 }
+
 /* For checked -> #checkmarkContainer input:checked ~ * */
+
 /* Create the checkmark/indicator (hidden when not checked). */
+
 .loginCheckmark:after {
   content: "";
   display: none;
 }
+
 /* Show the checkmark when checked. */
+
 #checkmarkContainer input:checked ~ .loginCheckmark:after {
   display: block;
 }
+
 /* Style the checkmark/indicator. */
+
 #checkmarkContainer .loginCheckmark:after {
   position: absolute;
   left: 3.5px;
@@ -912,10 +1787,12 @@ button {
   transform: rotateX(60deg) rotateY(45deg) rotateZ(45deg);
   animation: 750ms rotateBefore infinite linear reverse;
 }
+
 .waitingSpinner:after {
   transform: rotateX(240deg) rotateY(45deg) rotateZ(45deg);
   animation: 750ms rotateAfter infinite linear;
 }
+
 .waitingSpinner:before,
 .waitingSpinner:after {
   box-sizing: border-box;
@@ -946,6 +1823,7 @@ button {
   from {
     transform: rotateX(60deg) rotateY(45deg) rotateZ(0deg);
   }
+
   to {
     transform: rotateX(60deg) rotateY(45deg) rotateZ(-360deg);
   }
@@ -955,6 +1833,7 @@ button {
   from {
     transform: rotateX(240deg) rotateY(45deg) rotateZ(0deg);
   }
+
   to {
     transform: rotateX(240deg) rotateY(45deg) rotateZ(360deg);
   }
@@ -1012,8 +1891,10 @@ button {
   transition: 0.25s ease;
   display: flex;
   align-items: center;
-  column-gap: 5px;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
 }
+
 .loginOptionButton:hover,
 .loginOptionButton:focus {
   background: rgba(54, 54, 54, 0.25);
@@ -1036,14 +1917,17 @@ button {
   outline: none;
   transition: 0.25s ease;
 }
+
 #loginOptionCancelButton:hover,
 #loginOptionCancelButton:focus {
   text-shadow: 0px 0px 20px lightgrey;
 }
+
 #loginOptionCancelButton:active {
   text-shadow: 0px 0px 20px rgba(211, 211, 211, 0.75);
   color: rgba(211, 211, 211, 0.75);
 }
+
 #loginOptionCancelButton:disabled {
   color: rgba(211, 211, 211, 0.75);
   pointer-events: none;
@@ -1056,6 +1940,7 @@ button {
  ******************************************************************************/
 
 /* Main settings container. */
+
 #settingsContainer {
   position: relative;
   height: 100%;
@@ -1065,6 +1950,7 @@ button {
 }
 
 /* Drop shadow displayed when content is scrolled out of view. */
+
 #settingsContainer:before {
   content: "";
   background: linear-gradient(rgba(0, 0, 0, 0.25), transparent);
@@ -1074,11 +1960,13 @@ button {
   opacity: 0;
   transition: opacity 0.25s ease;
 }
+
 #settingsContainer[scrolled]:before {
   opacity: 1;
 }
 
 /* Left hand side of the settings UI, for navigation. */
+
 #settingsContainerLeft {
   padding-top: 4%;
   height: 100%;
@@ -1087,6 +1975,7 @@ button {
 }
 
 /* Settings navigation container. */
+
 #settingsNavContainer {
   height: 100%;
   display: flex;
@@ -1094,16 +1983,19 @@ button {
 }
 
 /* Navigation header styles. */
+
 #settingsNavHeader {
   height: 15%;
   display: flex;
   justify-content: center;
 }
+
 #settingsNavHeaderText {
   font-size: 20px;
 }
 
 /* Navigation items outer container. */
+
 #settingsNavItemsContainer {
   height: 85%;
   display: flex;
@@ -1112,6 +2004,7 @@ button {
 }
 
 /* Navigation items content container. */
+
 #settingsNavItemsContent {
   height: 100%;
   display: flex;
@@ -1120,6 +2013,7 @@ button {
 }
 
 /* Navigation item shared styles. */
+
 .settingsNavItem {
   background: none;
   border: none;
@@ -1131,11 +2025,13 @@ button {
   outline: none;
   transition: 0.25s ease;
 }
+
 .settingsNavItem:hover,
 .settingsNavItem:focus {
   color: #c1c1c1;
   text-shadow: 0px 0px 20px #c1c1c1;
 }
+
 .settingsNavItem[selected] {
   cursor: default;
   color: white;
@@ -1143,17 +2039,20 @@ button {
 }
 
 /* Div to add some space between nav items. */
+
 .settingsNavSpacer {
   height: 25px;
 }
 
 /* Content container for the done button. */
+
 #settingsNavContentBottom {
   position: absolute;
   top: 65%;
 }
 
 /* Settings navigational divider. */
+
 .settingsNavDivider {
   width: 75%;
   height: 1px;
@@ -1163,6 +2062,7 @@ button {
 }
 
 /* Settings done button styles. */
+
 #settingsNavDone {
   background: none;
   border: none;
@@ -1174,22 +2074,26 @@ button {
   outline: none;
   transition: 0.25s ease;
 }
+
 #settingsNavDone:hover,
 #settingsNavDone:focus {
   text-shadow: 0px 0px 20px white, 0px 0px 20px white, 0px 0px 20px white;
 }
+
 #settingsNavDone:active {
   text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75),
     0px 0px 20px rgba(255, 255, 255, 0.75),
     0px 0px 20px rgba(255, 255, 255, 0.75);
   color: rgba(255, 255, 255, 0.75);
 }
+
 #settingsNavDone:disabled {
   color: rgba(255, 255, 255, 0.75);
   pointer-events: none;
 }
 
 /* Right hand side of the settings container, for tabs. */
+
 #settingsContainerRight {
   height: 100%;
   width: 75%;
@@ -1197,47 +2101,57 @@ button {
 }
 
 /* Settings tab shared styles. */
+
 .settingsTab {
   width: 100%;
   height: 100%;
   overflow-y: auto;
 }
+
 .settingsTab::-webkit-scrollbar {
   width: 2px;
 }
+
 .settingsTab::-webkit-scrollbar-track {
   display: none;
 }
+
 .settingsTab::-webkit-scrollbar-thumb {
   border-radius: 10px;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 /* Add spacing to the top of each settings tab. */
+
 .settingsTab > *:first-child {
   margin-top: 5%;
 }
 
 /* Add spacing to the bottom of each settings tab. */
+
 .settingsTab > *:last-child {
   margin-bottom: 20%;
 }
 
 /* Tab header shared styles. */
+
 .settingsTabHeader {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
 }
+
 .settingsTabHeaderText {
   font-size: 20px;
   font-family: "Avenir Medium";
 }
+
 .settingsTabHeaderDesc {
   font-size: 12px;
 }
 
 /* Selected server content container */
+
 .settingsSelServContainer {
   background: rgba(0, 0, 0, 0.25);
   width: 75%;
@@ -1248,6 +2162,7 @@ button {
 }
 
 /* Div which will be populated with the selected server's information. */
+
 .settingsSelServContent {
   display: flex;
   align-items: center;
@@ -1256,6 +2171,7 @@ button {
 }
 
 /* Wrapper container for the switch server button. */
+
 .settingsSwitchServerContainer {
   display: flex;
   align-items: center;
@@ -1263,6 +2179,7 @@ button {
 }
 
 /* Button to switch server configurations on the mods tab. */
+
 .settingsSwitchServerButton {
   opacity: 0;
   border: 1px solid rgb(255, 255, 255);
@@ -1275,27 +2192,32 @@ button {
   cursor: pointer;
   outline: none;
 }
+
 .settingsSwitchServerButton:hover,
 .settingsSwitchServerButton:focus {
   box-shadow: 0px 0px 20px rgb(255, 255, 255);
   background: rgba(255, 255, 255, 0.25);
 }
+
 .settingsSwitchServerButton:active {
   box-shadow: 0px 0px 20px rgb(187, 187, 187);
   background: rgba(187, 187, 187, 0.25);
   border: 1px solid rgb(187, 187, 187);
   color: rgb(187, 187, 187);
 }
+
 .settingsSelServContainer:hover .settingsSwitchServerButton {
   opacity: 1;
 }
 
 /* Remove spin button from number inputs. */
+
 #settingsContainer input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
 /* Default styles for text/number inputs. */
+
 #settingsContainer input[type="number"],
 #settingsContainer input[type="text"] {
   color: white;
@@ -1305,11 +2227,13 @@ button {
   font-family: "Avenir Book";
   transition: 0.25s ease;
 }
+
 #settingsContainer input[type="number"]:focus,
 #settingsContainer input[type="text"]:focus {
   outline: none;
   border-color: rgba(126, 126, 126, 0.87);
 }
+
 #settingsContainer input[type="number"][error] {
   border-color: rgb(255, 27, 12);
   background: rgba(236, 0, 0, 0.25);
@@ -1317,6 +2241,7 @@ button {
 }
 
 /* Styles for a generic settings entry. */
+
 .settingsFieldContainer {
   display: flex;
   align-items: center;
@@ -1325,20 +2250,24 @@ button {
   width: 75%;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
+
 .settingsFieldLeft {
   display: flex;
   flex-direction: column;
 }
+
 .settingsFieldTitle {
   font-size: 14px;
   font-family: "Avenir Medium";
   color: rgba(255, 255, 255, 0.95);
 }
+
 .settingsFieldDesc {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.95);
   margin-top: 5px;
 }
+
 .settingsDivider {
   height: 1px;
   width: 75%;
@@ -1346,6 +2275,7 @@ button {
 }
 
 /* Toggle Switch */
+
 .toggleSwitch {
   position: relative;
   display: inline-block;
@@ -1354,9 +2284,11 @@ button {
   border-radius: 50px;
   box-sizing: border-box;
 }
+
 .toggleSwitch input {
   display: none;
 }
+
 .toggleSwitchSlider {
   position: absolute;
   cursor: pointer;
@@ -1369,6 +2301,7 @@ button {
   border-radius: 50px;
   border: 1px solid rgba(126, 126, 126, 0.57);
 }
+
 .toggleSwitchSlider:before {
   position: absolute;
   content: "";
@@ -1381,16 +2314,19 @@ button {
   border-radius: 50px;
   transition: 0.4s;
 }
+
 input:checked + .toggleSwitchSlider {
   background-color: rgb(31, 140, 11);
   /* box-shadow: inset 2px 1px 20px black; */
   border: 1px solid rgb(31, 140, 11);
 }
+
 input:checked + .toggleSwitchSlider:before {
   transform: translateX(15px);
 }
 
 /* Range Slider styles. */
+
 .rangeSlider {
   width: 35%;
   height: 5px;
@@ -1399,6 +2335,7 @@ input:checked + .toggleSwitchSlider:before {
   border-radius: 3px;
   position: relative;
 }
+
 .rangeSliderBar {
   position: absolute;
   background: #8be88b;
@@ -1407,6 +2344,7 @@ input:checked + .toggleSwitchSlider:before {
   border-radius: 3px 0px 0px 3px;
   transition: background 0.25s ease;
 }
+
 .rangeSliderTrack {
   position: absolute;
   top: -7.5px;
@@ -1421,6 +2359,7 @@ input:checked + .toggleSwitchSlider:before {
 /* File selectors */
 
 /* Main container for File selectors. */
+
 .settingsFileSelContainer {
   display: flex;
   flex-direction: column;
@@ -1431,17 +2370,20 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* File selector title. */
+
 .settingsFileSelTitle {
   margin-bottom: 10px;
 }
 
 /* Wrapper container for the actionable elements. */
+
 .settingsFileSelActions {
   display: flex;
   width: 90%;
 }
 
 /* File selector icon settings. */
+
 .settingsFileSelIcon {
   display: flex;
   align-items: center;
@@ -1450,6 +2392,7 @@ input:checked + .toggleSwitchSlider:before {
   padding: 5px;
   transition: 0.25s ease;
 }
+
 .settingsFileSelSVG {
   width: 20px;
   height: 20px;
@@ -1457,6 +2400,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Disabled text field which stores the selected file path. */
+
 .settingsFileSelVal {
   border-radius: 0px !important;
   width: 100%;
@@ -1466,6 +2410,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* File selection button. */
+
 .settingsFileSelButton {
   border: 0px;
   border-radius: 0px 3px 3px 0px;
@@ -1477,22 +2422,26 @@ input:checked + .toggleSwitchSlider:before {
   white-space: nowrap;
   outline: none;
 }
+
 .settingsFileSelButton:hover,
 .settingsFileSelButton:focus {
   text-shadow: 0px 0px 20px white;
 }
+
 .settingsFileSelButton:active {
   text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75);
   color: rgba(255, 255, 255, 0.75);
 }
 
 /* Description for the file selector. */
+
 .settingsFileSelDesc {
   font-size: 10px;
   margin: 20px 0px;
   color: lightgrey;
   width: 89%;
 }
+
 .settingsFileSelDesc strong {
   font-family: "Avenir Medium";
 }
@@ -1519,10 +2468,12 @@ input:checked + .toggleSwitchSlider:before {
 
 .settingsAuthAccountTypeHeaderLeft {
   display: flex;
-  column-gap: 5px;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
 }
 
 /* Settings add account button styles. */
+
 .settingsAddAuthAccount {
   background: none;
   border: none;
@@ -1533,33 +2484,40 @@ input:checked + .toggleSwitchSlider:before {
   outline: none;
   transition: 0.25s ease;
 }
+
 .settingsAddAuthAccount:hover,
 .settingsAddAuthAccount:focus {
   text-shadow: 0px 0px 20px white, 0px 0px 20px white, 0px 0px 20px white;
 }
+
 .settingsAddAuthAccount:active {
   text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.75),
     0px 0px 20px rgba(255, 255, 255, 0.75),
     0px 0px 20px rgba(255, 255, 255, 0.75);
   color: rgba(255, 255, 255, 0.75);
 }
+
 .settingsAddAuthAccount:disabled {
   color: rgba(255, 255, 255, 0.75);
   pointer-events: none;
 }
 
 /* Auth account list container styles. */
+
 .settingsCurrentAccounts {
   margin-bottom: 5%;
 }
+
 .settingsCurrentAccounts > .settingsAuthAccount:not(:last-child) {
   margin-bottom: 10px;
 }
+
 .settingsCurrentAccounts > .settingsAuthAccount:not(:first-child) {
   margin-top: 10px;
 }
 
 /* Auth account shared styles. */
+
 .settingsAuthAccount {
   display: flex;
   background: rgba(0, 0, 0, 0.25);
@@ -1568,22 +2526,26 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Left hand side of an auth account element, for the skin image. */
+
 .settingsAuthAccountLeft {
   padding: 5px 5px 5px 20px;
 }
 
 /* Image of the auth account's skin. */
+
 .settingsAuthAccountImage {
   height: 115px;
 }
 
 /* Right hand side of the auth account, for info + actions. */
+
 .settingsAuthAccountRight {
   display: flex;
   width: 100%;
 }
 
 /* Account details container. */
+
 .settingsAuthAccountDetails {
   display: flex;
   flex-direction: column;
@@ -1591,27 +2553,32 @@ input:checked + .toggleSwitchSlider:before {
   margin-left: 20px;
   width: 100%;
 }
+
 .settingsAuthAccountDetails > *:not(:last-child) {
   margin-bottom: 20px;
 }
 
 /* Account detail element styles. */
+
 .settingsAuthAccountDetailPane {
   display: flex;
   flex-direction: column;
 }
+
 .settingsAuthAccountDetailTitle {
   font-size: 12px;
   color: grey;
   font-weight: bold;
   font-family: "Avenir Medium";
 }
+
 .settingsAuthAccountDetailValue {
   font-size: 14px;
   -webkit-user-select: initial;
 }
 
 /* Account actions container. */
+
 .settingsAuthAccountActions {
   display: flex;
   flex-direction: column;
@@ -1621,6 +2588,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Account select button shared styles. */
+
 .settingsAuthAccountSelect {
   opacity: 0;
   border: none;
@@ -1630,20 +2598,24 @@ input:checked + .toggleSwitchSlider:before {
   outline: none;
   transition: 0.25s ease;
 }
+
 .settingsAuthAccountSelect:hover:not([selected]),
 .settingsAuthAccountSelect:focus:not([selected]) {
   text-shadow: 0px 0px 20px white, 0px 0px 20px white;
   cursor: pointer;
 }
+
 .settingsAuthAccount:hover .settingsAuthAccountSelect:not([selected]),
 .settingsAuthAccountSelect[selected] {
   opacity: 1;
 }
+
 .settingsAuthAccountSelect[selected] {
   pointer-events: none;
 }
 
 /* Account logout button shared styles. */
+
 .settingsAuthAccountLogOut {
   opacity: 0;
   border: 1px solid rgb(241, 55, 55);
@@ -1656,17 +2628,20 @@ input:checked + .toggleSwitchSlider:before {
   cursor: pointer;
   outline: none;
 }
+
 .settingsAuthAccountLogOut:hover,
 .settingsAuthAccountLogOut:focus {
   box-shadow: 0px 0px 20px rgb(241, 55, 55);
   background: rgba(241, 55, 55, 0.25);
 }
+
 .settingsAuthAccountLogOut:active {
   box-shadow: 0px 0px 20px rgb(185, 47, 47);
   background: rgba(185, 47, 47, 0.25);
   border: 1px solid rgb(185, 47, 47);
   color: rgb(185, 47, 47);
 }
+
 .settingsAuthAccount:hover .settingsAuthAccountLogOut {
   opacity: 1;
 }
@@ -1676,6 +2651,7 @@ input:checked + .toggleSwitchSlider:before {
 * * */
 
 /* Game resolution UI elements. */
+
 #settingsGameResolutionContainer {
   display: flex;
   flex-direction: column;
@@ -1683,15 +2659,18 @@ input:checked + .toggleSwitchSlider:before {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   width: 75%;
 }
+
 #settingsGameResolutionContent {
   display: flex;
   align-items: center;
   padding-top: 10px;
 }
+
 #settingsGameResolutionCross {
   color: grey;
   padding: 0px 15px;
 }
+
 #settingsGameWidth,
 #settingsGameHeight {
   padding: 7.5px 5px;
@@ -1703,11 +2682,13 @@ input:checked + .toggleSwitchSlider:before {
 * * */
 
 /* Main content container for the mod elements. */
+
 #settingsModsContainer {
   width: 75%;
 }
 
 /* Mod sub-container header text. */
+
 .settingsModsHeader {
   padding-bottom: 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
@@ -1715,6 +2696,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Mod elements sub-containers. */
+
 #settingsReqModsContainer,
 #settingsOptModsContainer,
 #settingsDropinModsContainer {
@@ -1722,6 +2704,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Main content containers for mod elements. */
+
 #settingsReqModsContent,
 #settingsOptModsContent,
 #settingsDropinModsContent {
@@ -1732,10 +2715,12 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Mod elements. */
+
 .settingsMod,
 .settingsDropinMod {
   padding: 10px;
 }
+
 .settingsSubMod {
   padding: 10px 0px 10px 15px;
   margin-left: 20px;
@@ -1743,6 +2728,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Main content container for mod element information. */
+
 .settingsModContent {
   display: flex;
   align-items: center;
@@ -1751,12 +2737,14 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Wrapper container for the left side of a mod element. */
+
 .settingsModMainWrapper {
   display: flex;
   align-items: center;
 }
 
 /* Mod enabled/disabled status. */
+
 .settingsModStatus {
   width: 7px;
   height: 7px;
@@ -1767,24 +2755,28 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Mod details container. */
+
 .settingsModDetails {
   display: flex;
   flex-direction: column;
 }
 
 /* The version of the mod. */
+
 .settingsModVersion {
   color: grey;
   font-size: 10px;
 }
 
 /* Disabled toggleswitch for required mods. */
+
 .toggleSwitch[reqmod] {
   filter: grayscale(49%) brightness(60%);
   pointer-events: none;
 }
 
 /* Set the status color of an enabled mod. */
+
 .settingsBaseMod[enabled]
   > .settingsModContent
   > .settingsModMainWrapper
@@ -1793,28 +2785,34 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Add opacity to submods of a disabled mod. */
+
 .settingsBaseMod:not([enabled]) > .settingsSubModContainer .settingsModContent {
   opacity: 0.5;
 }
 
 /* Curve the left border for submods. */
+
 .settingsSubModContainer > .settingsSubMod:first-child {
   border-top-left-radius: 10px;
 }
+
 .settingsSubModContainer > .settingsSubMod:last-child {
   border-bottom-left-radius: 10px;
 }
+
 .settingsSubModContainer > .settingsSubMod:only-child {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
 
 /* Wrapper container for all submods. */
+
 .settingsSubModContainer {
   margin-top: 10px;
 }
 
 /* Button to open the mods folder for drop-in mods. */
+
 #settingsDropinFileSystemButton {
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(126, 126, 126, 0.57);
@@ -1828,19 +2826,23 @@ input:checked + .toggleSwitchSlider:before {
   transition: 0.25s ease;
   margin-bottom: 10px;
 }
+
 #settingsDropinFileSystemButton:hover,
 #settingsDropinFileSystemButton:focus,
 #settingsDropinFileSystemButton[drag] {
   background: rgba(54, 54, 54, 0.25);
   text-shadow: 0px 0px 20px white;
 }
+
 /* Refresh instructions on the file system button. */
+
 #settingsDropinRefreshNote {
   font-size: 10px;
   pointer-events: none;
 }
 
 /* Button to remove drop-in mods. */
+
 .settingsDropinRemoveButton {
   background: none;
   border: none;
@@ -1853,16 +2855,19 @@ input:checked + .toggleSwitchSlider:before {
   outline: none;
   transition: 0.25s ease;
 }
+
 .settingsDropinRemoveButton:hover,
 .settingsDropinRemoveButton:focus {
   text-shadow: 0px 0px 20px #c32625, 0px 0px 20px #c32625, 0px 0px 20px #c32625;
 }
+
 .settingsDropinRemoveButton:active {
   color: #9b1f1f;
   text-shadow: 0px 0px 20px #9b1f1f, 0px 0px 20px #9b1f1f, 0px 0px 20px #9b1f1f;
 }
 
 /* Shaderpack settings description. */
+
 #settingsShaderpackDesc {
   font-size: 10px;
   margin: 10px 0px;
@@ -1872,11 +2877,13 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Wrapper container. */
+
 #settingsShaderpackWrapper {
   display: flex;
 }
 
 /* Button to add shaderpacks. */
+
 #settingsShaderpackButton {
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(126, 126, 126, 0.57);
@@ -1888,6 +2895,7 @@ input:checked + .toggleSwitchSlider:before {
   padding: 6px 11px;
   margin-right: 5px;
 }
+
 #settingsShaderpackButton:hover,
 #settingsShaderpackButton:focus,
 #settingsShaderpackButton[drag] {
@@ -1896,12 +2904,14 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Main select container. */
+
 .settingsSelectContainer {
   position: relative;
   width: 50%;
 }
 
 /* Div which displays the selected option. */
+
 .settingsSelectSelected {
   border-radius: 3px;
   border-width: 1px;
@@ -1910,6 +2920,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Style the arrow inside the select element. */
+
 .settingsSelectSelected:after {
   position: absolute;
   content: "";
@@ -1922,15 +2933,18 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Point the arrow upwards when the select box is open (active). */
+
 .settingsSelectSelected.select-arrow-active:after {
   border-color: transparent transparent rgba(126, 126, 126, 0.57) transparent;
   top: 7px;
 }
+
 .settingsSelectSelected.select-arrow-active {
   border-radius: 3px 3px 0px 0px;
 }
 
 /* Options content container. */
+
 .settingsSelectOptions {
   position: absolute;
   top: 100%;
@@ -1943,22 +2957,28 @@ input:checked + .toggleSwitchSlider:before {
   border-top: none;
   border-radius: 0px 0px 3px 3px;
 }
+
 /* Hide the items when the select box is closed. */
+
 .settingsSelectOptions[hidden] {
   display: none;
 }
+
 .settingsSelectOptions::-webkit-scrollbar {
   width: 2px;
 }
+
 .settingsSelectOptions::-webkit-scrollbar-track {
   display: none;
 }
+
 .settingsSelectOptions::-webkit-scrollbar-thumb {
   border-radius: 10px;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 /* Shared styles between options and selection div. */
+
 .settingsSelectOptions div,
 .settingsSelectSelected {
   background: rgba(0, 0, 0, 0.25);
@@ -1967,16 +2987,19 @@ input:checked + .toggleSwitchSlider:before {
   color: #ffffff;
   cursor: pointer;
 }
+
 .settingsSelectOptions div {
   border-width: 0px 0px 1px 0px;
   font-size: 12px;
   padding: 4px 16px;
 }
+
 .settingsSelectOptions div:last-child {
   border-bottom: none;
 }
 
 /* Hover + selected styles. */
+
 .settingsSelectOptions div:hover,
 .settingsSelectOptions div[selected] {
   background-color: rgba(255, 255, 255, 0.25) !important;
@@ -1987,24 +3010,28 @@ input:checked + .toggleSwitchSlider:before {
 * * */
 
 /* Style links on the Java tab. */
+
 #settingsTabJava a,
 .settingsChangelogText a {
   color: rgba(202, 202, 202, 0.75);
   transition: 0.25s ease;
   outline: none;
 }
+
 #settingsTabJava a:hover,
 #settingsTabJava a:focus,
 .settingsChangelogText a:hover,
 .settingsChangelogText a:focus {
   color: rgba(255, 255, 255, 0.75);
 }
+
 #settingsTabJava a:active,
 .settingsChangelogText a:active {
   color: rgba(165, 165, 165, 0.75);
 }
 
 /* Main container for memory management. */
+
 #settingsMemoryContainer {
   width: 75%;
   display: flex;
@@ -2014,6 +3041,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Memory management title. */
+
 #settingsMemoryTitle {
   margin-bottom: 10px;
   padding-bottom: 5px;
@@ -2021,14 +3049,17 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Memory management content. */
+
 #settingsMemoryContent {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
+
 #settingsMemoryContentLeft {
   width: 69%;
 }
+
 #settingsMemoryContentRight {
   display: flex;
   align-items: center;
@@ -2036,11 +3067,13 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Header for memory sliders. */
+
 .settingsMemoryHeader {
   font-size: 14px;
 }
 
 /* Wrapper container for a memory slider and label. */
+
 .settingsMemoryActionContainer {
   display: flex;
   align-items: center;
@@ -2048,41 +3081,49 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Label which displays a memory slider's value. */
+
 .settingsMemoryLabel {
   font-size: 14px;
   margin-right: 2%;
 }
 
 /* Range sliders for min and max memory settings. */
+
 #settingsMaxRAMRange,
 #settingsMinRAMRange {
   width: 85%;
 }
 
 /* Memory status elements. */
+
 #settingsMemoryStatus {
   display: flex;
   flex-direction: column;
 }
+
 #settingsMemoryStatus > .settingsMemoryStatusContainer:not(:last-child) {
   margin-bottom: 50%;
 }
+
 .settingsMemoryStatusContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .settingsMemoryStatusTitle {
   font-size: 12px;
   color: grey;
   font-weight: bold;
 }
+
 .settingsMemoryStatusValue {
   color: lightgrey;
   font-size: 16px;
 }
 
 /* Description for memory management. */
+
 #settingsMemoryDesc {
   font-size: 10px;
   margin: 20px 0px;
@@ -2091,6 +3132,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Status text which displays details on the selected executable. */
+
 #settingsJavaExecDetails {
   font-weight: bold;
   color: grey;
@@ -2098,33 +3140,39 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Main container for the JVM options setting. */
+
 #settingsJVMOptsContainer {
   width: 75%;
 }
 
 /* JVM options title. */
+
 #settingsJVMOptsTitle {
   margin-bottom: 10px;
 }
 
 /* Wrapper container for the actionable elements. */
+
 #settingsJVMOptsContent {
   display: flex;
   width: 90%;
 }
 
 /* Text field to input the JVM options. */
+
 #settingsJVMOptsVal {
   border-radius: 0px 3px 3px 0px !important;
   width: 100%;
   padding: 5px 10px;
   font-size: 12px;
 }
+
 #settingsJVMOptsContent:focus-within > .settingsJavaIcon {
   background: rgba(126, 126, 126, 0.87);
 }
 
 /* Description for the JVM options setting. */
+
 #settingsJVMOptsDesc {
   font-size: 10px;
   margin: 20px 0px;
@@ -2138,6 +3186,7 @@ input:checked + .toggleSwitchSlider:before {
 * * */
 
 /* Tailored style for the data directory header. */
+
 #settingsDataDirTitle {
   margin-bottom: 10px;
 }
@@ -2147,6 +3196,7 @@ input:checked + .toggleSwitchSlider:before {
 * * */
 
 /* Main about content container. */
+
 #settingsAboutCurrentContainer {
   display: flex;
   flex-direction: column;
@@ -2158,6 +3208,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* About content. */
+
 #settingsAboutCurrentContent {
   display: flex;
   flex-direction: column;
@@ -2165,23 +3216,27 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* About header elements. */
+
 #settingsAboutCurrentHeadline {
   display: flex;
   align-items: center;
   padding-bottom: 5px;
   border-bottom: 1px solid rgba(126, 126, 126, 0.57);
 }
+
 #settingsAboutLogo {
   width: 30px;
   height: 30px;
   padding: 5px;
 }
+
 #settingsAboutTitle {
   font-size: 23px;
   padding-left: 10px;
 }
 
 /* Current version container. */
+
 #settingsAboutCurrentVersion {
   display: flex;
   align-items: center;
@@ -2189,6 +3244,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Checkmark next to the version information. */
+
 #settingsAboutCurrentVersionCheck {
   border-radius: 50%;
   background: #23aa23;
@@ -2203,11 +3259,13 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Current version details container. */
+
 #settingsAboutCurrentVersionDetails {
   margin-left: 10px;
 }
 
 /* Release type text. */
+
 #settingsAboutCurrentVersionTitle {
   font-size: 12px;
   font-family: "Avenir Medium";
@@ -2216,6 +3274,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Current version text. */
+
 #settingsAboutCurrentVersionLine {
   font-size: 10px;
   color: grey;
@@ -2223,11 +3282,13 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* About information links. */
+
 #settingsAboutButtons {
   display: flex;
   padding: 0px 15px;
   margin-bottom: 5px;
 }
+
 .settingsAboutButton {
   background: none;
   border: none;
@@ -2238,15 +3299,18 @@ input:checked + .toggleSwitchSlider:before {
   outline: none;
   text-decoration: none;
 }
+
 .settingsAboutButton:hover,
 .settingsAboutButton:focus {
   color: rgb(165, 165, 165);
 }
+
 .settingsAboutButton:active {
   color: rgba(124, 124, 124, 0.75);
 }
 
 /* Main changelog container. */
+
 .settingsChangelogContainer {
   display: flex;
   flex-direction: column;
@@ -2258,6 +3322,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Changelog content container. */
+
 .settingsChangelogContent {
   display: flex;
   flex-direction: column;
@@ -2265,12 +3330,15 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Changelog header container. */
+
 .settingsChangelogHeadline {
   padding-bottom: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid rgba(126, 126, 126, 0.57);
 }
+
 /* Changelog header label. */
+
 .settingsChangelogLabel {
   font-size: 12px;
   color: grey;
@@ -2278,21 +3346,25 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Changelog text content container. */
+
 .settingsChangelogText {
   font-size: 12px;
 }
 
 /* Styles for the changelog elements. */
+
 .settingsChangelogText p {
   margin-bottom: 16px;
   line-height: 1.5;
 }
+
 .settingsChangelogText blockquote {
   border-left: 0.25em solid rgba(126, 126, 126, 0.95);
   margin: 0px;
   padding: 0 0 0 1em;
   color: rgba(255, 255, 255, 0.85);
 }
+
 .settingsChangelogText code {
   padding: 0.1em 0.4em;
   font-size: 85%;
@@ -2301,18 +3373,22 @@ input:checked + .toggleSwitchSlider:before {
   border-radius: 3px;
   font-family: "Avenir Book";
 }
+
 .settingsChangelogText li + li {
   margin-top: 0.25em;
 }
+
 .settingsChangelogText a.commit-link {
   font-weight: 400;
   color: #ffffff;
   text-decoration: none;
 }
+
 .settingsChangelogText a.commit-link:hover {
   text-decoration: underline !important;
   text-decoration-color: black;
 }
+
 .settingsChangelogText tt {
   padding: 0.1em 0.4em;
   font-size: 86%;
@@ -2321,25 +3397,32 @@ input:checked + .toggleSwitchSlider:before {
   color: black;
   font-weight: bold;
 }
+
 .settingsChangelogText a.commit-link:hover tt {
   text-decoration: underline;
   text-decoration-color: black;
 }
+
 .settingsChangelogText .highlight {
   background: rgba(0, 0, 0, 0.3);
-  user-select: initial;
+  -webkit-user-select: initial;
+     -moz-user-select: initial;
+          user-select: initial;
   padding: 5px 10px;
 }
+
 .settingsChangelogText .highlight pre {
   margin: 0px;
 }
 
 /* Container for the changelog button. */
+
 .settingsChangelogActions {
   padding: 0px 15px 5px 15px;
 }
 
 /* Open changelog on GitHub. */
+
 .settingsChangelogButton {
   padding: 0px;
 }
@@ -2349,6 +3432,7 @@ input:checked + .toggleSwitchSlider:before {
 * * */
 
 /* Main about content container. */
+
 #settingsUpdateStatusContainer {
   display: flex;
   flex-direction: column;
@@ -2360,6 +3444,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Update content. */
+
 #settingsUpdateStatusContent {
   display: flex;
   flex-direction: column;
@@ -2367,12 +3452,14 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Update header elements. */
+
 #settingsUpdateStatusHeadline {
   display: flex;
   align-items: center;
   padding-bottom: 5px;
   border-bottom: 1px solid rgba(126, 126, 126, 0.57);
 }
+
 #settingsUpdateTitle {
   font-size: 16px;
   padding-left: 10px;
@@ -2380,6 +3467,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Update version container. */
+
 #settingsUpdateVersion {
   display: flex;
   align-items: center;
@@ -2388,6 +3476,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Checkmark next to the version information. */
+
 #settingsUpdateVersionCheck {
   border-radius: 50%;
   background: #23aa23;
@@ -2402,11 +3491,13 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Update version details container. */
+
 #settingsUpdateVersionDetails {
   margin-left: 10px;
 }
 
 /* Release type text. */
+
 #settingsUpdateVersionTitle {
   font-size: 12px;
   font-family: "Avenir Medium";
@@ -2415,6 +3506,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Current version text. */
+
 #settingsUpdateVersionLine {
   font-size: 10px;
   color: grey;
@@ -2422,6 +3514,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Update action container. */
+
 #settingsUpdateActionContainer {
   padding-top: 10px;
   font-size: 14px;
@@ -2429,6 +3522,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Update action button styles. */
+
 #settingsUpdateActionButton {
   display: flex;
   flex-direction: column;
@@ -2442,14 +3536,17 @@ input:checked + .toggleSwitchSlider:before {
   text-align: left;
   transition: 0.25s ease;
 }
+
 #settingsUpdateActionButton:hover,
 #settingsUpdateActionButton:focus {
   text-shadow: 0px 0px 20px white, 0px 0px 20px white, 0px 0px 20px white;
 }
+
 #settingsUpdateActionButton:active {
   text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
   color: #c7c7c7;
 }
+
 #settingsUpdateActionButton:disabled {
   pointer-events: none;
 }
@@ -2461,6 +3558,7 @@ input:checked + .toggleSwitchSlider:before {
  ******************************************************************************/
 
 /* Main content container. */
+
 #landingContainer {
   height: 100%;
   position: relative;
@@ -2469,6 +3567,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Upper content container. */
+
 #landingContainer > #upper {
   position: relative;
   transition: top 2s ease;
@@ -2476,17 +3575,20 @@ input:checked + .toggleSwitchSlider:before {
   height: 77%;
   display: flex;
 }
+
 #landingContainer > #upper > #left {
   display: inline-flex;
   width: 15%;
   height: 100%;
   justify-content: flex-end;
 }
+
 #landingContainer > #upper > #content {
   display: inline-flex;
   width: 70%;
   height: 100%;
 }
+
 #landingContainer > #upper > #right {
   display: inline-flex;
   width: 15%;
@@ -2494,11 +3596,13 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Lower content container. */
+
 #landingContainer > #lower {
   height: 23%;
   display: flex;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
+
 #landingContainer > #lower > #left {
   position: relative;
   transition: top 2s ease;
@@ -2508,6 +3612,7 @@ input:checked + .toggleSwitchSlider:before {
   display: inline-flex;
   justify-content: center;
 }
+
 #landingContainer > #lower > #left #content {
   position: relative;
   top: 25px;
@@ -2515,6 +3620,7 @@ input:checked + .toggleSwitchSlider:before {
   line-height: 24px;
   left: 50px;
 }
+
 #landingContainer > #lower > #center {
   position: relative;
   transition: top 2s ease;
@@ -2524,12 +3630,14 @@ input:checked + .toggleSwitchSlider:before {
   display: inline-flex;
   justify-content: center;
 }
+
 #landingContainer > #lower > #center #content {
   position: relative;
   z-index: 500;
   transition: top 2s ease;
   top: 10px;
 }
+
 #landingContainer > #lower > #right {
   position: relative;
   transition: top 2s ease;
@@ -2546,6 +3654,7 @@ input:checked + .toggleSwitchSlider:before {
  ******************************************************************************/
 
 /* Main container. */
+
 #newsContainer {
   position: absolute;
   top: 100%;
@@ -2558,6 +3667,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* News content container. */
+
 #newsContent {
   height: 82vh;
   width: 100%;
@@ -2567,6 +3677,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Drop shadow displayed when content is scrolled out of view. */
+
 #newsContent:before {
   content: "";
   background: linear-gradient(rgba(0, 0, 0, 0.25), transparent);
@@ -2576,11 +3687,13 @@ input:checked + .toggleSwitchSlider:before {
   opacity: 0;
   transition: opacity 0.25s ease;
 }
+
 #newsContent[scrolled]:before {
   opacity: 1;
 }
 
 /* News article status container (left). */
+
 #newsStatusContainer {
   width: calc(30% - 60px);
   height: calc(100% - 30px);
@@ -2592,6 +3705,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* News status content. */
+
 #newsStatusContent {
   display: flex;
   flex-direction: column;
@@ -2599,12 +3713,14 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* News title wrapper. */
+
 #newsTitleContainer {
   display: flex;
   max-width: 90%;
 }
 
 /* News article title styles. */
+
 #newsArticleTitle {
   font-size: 18px;
   font-weight: bold;
@@ -2615,22 +3731,26 @@ input:checked + .toggleSwitchSlider:before {
   outline: none;
   text-align: right;
 }
+
 #newsArticleTitle:hover,
 #newsArticleTitle:focus {
   text-shadow: 0px 0px 20px white;
 }
+
 #newsArticleTitle:active {
   color: #c7c7c7;
   text-shadow: 0px 0px 20px #c7c7c7;
 }
 
 /* News meta container. */
+
 #newsMetaContainer {
   display: flex;
   flex-direction: column;
 }
 
 /* Date and author wrappers. */
+
 #newsArticleDateWrapper,
 #newsArticleAuthorWrapper {
   display: flex;
@@ -2638,6 +3758,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Date and author shared styles. */
+
 #newsArticleDate,
 #newsArticleAuthor {
   display: inline-block;
@@ -2648,6 +3769,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Date styles. */
+
 #newsArticleDate {
   background: white;
   color: black;
@@ -2655,11 +3777,13 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Author styles. */
+
 #newsArticleAuthor {
   background: #a02d2a;
 }
 
 /* News article comments styles. */
+
 #newsArticleComments {
   margin-top: 5px;
   display: inline-block;
@@ -2670,15 +3794,18 @@ input:checked + .toggleSwitchSlider:before {
   outline: none;
   text-align: right;
 }
+
 #newsArticleComments:focus,
 #newsArticleComments:hover {
   color: #e0e0e0;
 }
+
 #newsArticleComments:active {
   color: #c7c7c7;
 }
 
 /* Article content container (right). */
+
 #newsArticleContainer {
   width: calc(100% - 25px);
   height: 100%;
@@ -2686,40 +3813,49 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Article content styles. */
+
 #newsArticleContentScrollable {
   font-size: 12px;
   overflow-y: scroll;
   height: 100%;
   padding: 0px 15px 0px 15px;
 }
+
 #newsArticleContentScrollable img,
 #newsArticleContentScrollable iframe {
   max-width: 95%;
   display: block;
   margin: 0 auto;
 }
+
 #newsArticleContentScrollable a {
   color: rgba(202, 202, 202, 0.75);
   transition: 0.25s ease;
   outline: none;
 }
+
 #newsArticleContentScrollable a:hover,
 #newsArticleContentScrollable a:focus {
   color: rgba(255, 255, 255, 0.75);
 }
+
 #newsArticleContentScrollable a:active {
   color: rgba(165, 165, 165, 0.75);
 }
+
 #newsArticleContentScrollable::-webkit-scrollbar {
   width: 2px;
 }
+
 #newsArticleContentScrollable::-webkit-scrollbar-track {
   display: none;
 }
+
 #newsArticleContentScrollable::-webkit-scrollbar-thumb {
   border-radius: 10px;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
 }
+
 .bbCodeSpoilerButton {
   background: none;
   border: none;
@@ -2731,14 +3867,17 @@ input:checked + .toggleSwitchSlider:before {
   border-bottom: 1px solid white;
   padding-bottom: 15px;
 }
+
 .bbCodeSpoilerButton:hover,
 .bbCodeSpoilerButton:focus {
   text-shadow: 0px 0px 20px #ffffff, 0px 0px 20px #ffffff, 0px 0px 20px #ffffff;
 }
+
 .bbCodeSpoilerButton:active {
   color: #c7c7c7;
   text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
 }
+
 .bbCodeSpoilerText {
   display: none;
   padding: 15px 0px;
@@ -2754,11 +3893,13 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Div to add spacing at the end of a news article. */
+
 .newsArticleSpacerBot {
   height: 30px;
 }
 
 /* News navigation container. */
+
 #newsNavigationContainer {
   display: flex;
   justify-content: center;
@@ -2771,12 +3912,14 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Navigation status span. */
+
 #newsNavigationStatus {
   font-size: 12px;
   margin: 0px 15px;
 }
 
 /* Left and right navigation button styles. */
+
 #newsNavigateLeft,
 #newsNavigateRight {
   background: none;
@@ -2785,34 +3928,41 @@ input:checked + .toggleSwitchSlider:before {
   height: 20px;
   cursor: pointer;
 }
+
 #newsNavigateLeft:hover #newsNavigationLeftSVG,
 #newsNavigateLeft:focus #newsNavigationLeftSVG,
 #newsNavigateRight:hover #newsNavigationRightSVG,
 #newsNavigateRight:focus #newsNavigationRightSVG {
   -webkit-filter: drop-shadow(0px 0px 2px #fff);
 }
+
 #newsNavigateLeft:active #newsNavigationLeftSVG .arrowLine,
 #newsNavigateRight:active #newsNavigationRightSVG .arrowLine {
   stroke: #c7c7c7;
 }
+
 #newsNavigateLeft:active #newsNavigationLeftSVG,
 #newsNavigateRight:active #newsNavigationRightSVG {
   -webkit-filter: drop-shadow(0px 0px 2px #c7c7c7);
 }
+
 #newsNavigateLeft:disabled #newsNavigationLeftSVG .arrowLine,
 #newsNavigateRight:disabled #newsNavigationRightSVG .arrowLine {
   stroke: rgba(255, 255, 255, 0.75);
 }
+
 #newsNavigationLeftSVG {
   transform: rotate(-90deg);
   width: 15px;
 }
+
 #newsNavigationRightSVG {
   transform: rotate(90deg);
   width: 15px;
 }
 
 /* News error (message) container. */
+
 #newsErrorContainer {
   height: 100%;
   display: flex;
@@ -2820,6 +3970,7 @@ input:checked + .toggleSwitchSlider:before {
   flex-direction: column;
   justify-content: center;
 }
+
 #newsErrorFailed {
   display: flex;
   align-items: center;
@@ -2828,17 +3979,22 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* News error content (message). */
+
 .newsErrorContent {
   font-size: 20px;
 }
+
 #newsErrorLoading {
   display: flex;
   width: 168.92px;
 }
+
 #nELoadSpan {
   white-space: pre;
 }
+
 /* News error retry button styles. */
+
 #newsErrorRetry {
   font-size: 12px;
   font-weight: bold;
@@ -2848,10 +4004,12 @@ input:checked + .toggleSwitchSlider:before {
   outline: none;
   transition: 0.25s ease;
 }
+
 #newsErrorRetry:focus,
 #newsErrorRetry:hover {
   text-shadow: 0px 0px 20px white;
 }
+
 #newsErrorRetry:active {
   color: #c7c7c7;
   text-shadow: 0px 0px 20px #c7c7c7;
@@ -2868,6 +4026,7 @@ input:checked + .toggleSwitchSlider:before {
 * * */
 
 /* Logo image. */
+
 #image_seal {
   height: 70px;
   width: auto;
@@ -2878,6 +4037,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Logo container styles. */
+
 #image_seal_container {
   position: relative;
   height: 70px;
@@ -2887,9 +4047,11 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Logo container styles w/ update. */
+
 #image_seal_container[update] {
   cursor: pointer;
 }
+
 #image_seal_container[update]:before,
 #image_seal_container[update]:after {
   cursor: pointer;
@@ -2904,11 +4066,13 @@ input:checked + .toggleSwitchSlider:before {
   animation: glow-grow 4s ease-out infinite;
   background: rgba(0, 0, 0, 0.15);
 }
+
 #image_seal_container[update]:before {
   animation-delay: 2s;
 }
 
 /* Update available tooltip styles. */
+
 #updateAvailableTooltip {
   cursor: pointer;
   visibility: hidden;
@@ -2928,6 +4092,7 @@ input:checked + .toggleSwitchSlider:before {
   font-size: 12px;
   transition: visibility 0s linear 0.25s, opacity 0.25s ease;
 }
+
 #updateAvailableTooltip::after {
   content: " ";
   position: absolute;
@@ -2938,6 +4103,7 @@ input:checked + .toggleSwitchSlider:before {
   border-style: solid;
   border-color: transparent transparent rgb(0, 0, 0) transparent;
 }
+
 #image_seal_container[update]:hover #updateAvailableTooltip {
   visibility: visible;
   opacity: 1;
@@ -2945,14 +4111,17 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Update available animation. */
+
 @keyframes glow-grow {
   0% {
     opacity: 0;
     transform: scale(1);
   }
+
   80% {
     opacity: 1;
   }
+
   100% {
     transform: scale(1.5);
     opacity: 0;
@@ -2964,6 +4133,7 @@ input:checked + .toggleSwitchSlider:before {
 * * */
 
 /*  Wrapper container for top, right content. */
+
 #rightContainer {
   display: flex;
   flex-direction: column;
@@ -2974,6 +4144,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Right hand user content container. */
+
 #user_content {
   display: flex;
   align-items: center;
@@ -2983,6 +4154,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* User profile avatar container. */
+
 #avatarContainer {
   border-radius: 50%;
   border: 2px solid #cad7e1;
@@ -2999,6 +4171,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Avatar edit overlay. */
+
 #avatarOverlay {
   opacity: 0;
   position: absolute;
@@ -3017,15 +4190,18 @@ input:checked + .toggleSwitchSlider:before {
   height: 100%;
   border-radius: 50%;
 }
+
 #avatarOverlay:hover,
 #avatarOverlay:focus {
   opacity: 1;
 }
+
 #avatarOverlay:active {
   background-color: rgba(0, 0, 0, 0.45);
 }
 
 /* User profile name text. */
+
 #user_text {
   font-size: 12px;
   min-width: 135px;
@@ -3039,6 +4215,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Social media icon content container. */
+
 #mediaContent {
   position: relative;
   display: flex;
@@ -3050,6 +4227,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Social Media Icon division containers. */
+
 #internalMedia,
 #externalMedia {
   display: flex;
@@ -3057,6 +4235,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Container object which wraps an icon to ensure fluid transitions. */
+
 .mediaContainer {
   display: flex;
   justify-content: center;
@@ -3065,6 +4244,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Divider bar between the external and internal icons. */
+
 .mediaDivider {
   height: 1px;
   width: 14px;
@@ -3073,14 +4253,15 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Social media icon shared styles. */
+
 .mediaSVG {
   fill: #ffffff;
-  height: 12px;
   transition: 0.25s ease;
   cursor: pointer;
   height: 12px;
   width: 25px;
 }
+
 .mediaSVG:hover,
 .mediaURL:focus .mediaSVG,
 .mediaSVG:active {
@@ -3088,11 +4269,13 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Social media URL shared styles. */
+
 .mediaURL {
   outline: none;
 }
 
 /* Internal media button shared styles. */
+
 .mediaButton {
   background: none;
   border: none;
@@ -3107,10 +4290,12 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Settings icon colors. */
+
 #settingsSVG {
   stroke: #ffffff;
   height: 15px;
 }
+
 .mediaButton:hover #settingsSVG,
 .mediaButton:focus #settingsSVG,
 .mediaButton:active #settingsSVG {
@@ -3118,6 +4303,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Settings tooltip styles. */
+
 #settingsTooltip {
   visibility: hidden;
   opacity: 0;
@@ -3133,6 +4319,7 @@ input:checked + .toggleSwitchSlider:before {
   line-height: 20px;
   transition: visibility 0s linear 0.25s, opacity 0.25s ease;
 }
+
 #settingsTooltip::after {
   content: " ";
   position: absolute;
@@ -3143,6 +4330,7 @@ input:checked + .toggleSwitchSlider:before {
   border-style: solid;
   border-color: transparent transparent transparent rgba(0, 0, 0, 0.75);
 }
+
 .mediaButton:hover #settingsTooltip,
 .mediaButton:focus #settingsTooltip,
 .mediaButton:active #settingsTooltip {
@@ -3152,38 +4340,46 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Twitter icon colors. */
+
 #twitterSVG:hover,
 #twitterURL:focus #twitterSVG {
   fill: #1da1f2;
 }
+
 #twitterSVG:active {
   fill: #1b8dd4;
 }
 
 /* Instagram icon colors. */
+
 #instagramSVG:hover,
 #instagramURL:focus #instagramSVG {
   fill: url("#instaFill");
   /*fill: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); */
 }
+
 #instagramSVG:active {
   fill: url("#instaFill");
 }
 
 /* Youtube icon colors. */
+
 #youtubeSVG:hover,
 #youtubeURL:focus #youtubeSVG {
   fill: #f00;
 }
+
 #youtubeSVG:active {
   fill: #ea0202;
 }
 
 /* Discord icon colors. */
+
 #discordSVG:hover,
 #discordURL:focus #discordSVG {
   fill: #7288d9;
 }
+
 #discordSVG:active {
   fill: #657ac4;
 }
@@ -3195,6 +4391,7 @@ input:checked + .toggleSwitchSlider:before {
  ******************************************************************************/
 
 /* Style for a general label on the bottom of the landing view. */
+
 .bot_label {
   font-size: 9px;
   letter-spacing: 1px;
@@ -3203,6 +4400,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Divider used on the bottom of the landing view. */
+
 .bot_divider {
   height: 25px;
   width: 2px;
@@ -3216,12 +4414,14 @@ input:checked + .toggleSwitchSlider:before {
 * * */
 
 /* Maintains maximum width on the status bar. */
+
 #server_status_wrapper {
   display: inline-flex;
   width: 75px;
 }
 
 /* Span which displays the player count of the selected server. */
+
 #player_count {
   color: #949494;
   font-size: 8px;
@@ -3231,6 +4431,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Wrapper container for the mojang status bar. */
+
 #mojangStatusWrapper {
   position: relative;
   display: flex;
@@ -3238,6 +4439,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Icon which displays the status of the mojang services. */
+
 #mojang_status_icon {
   font-size: 30px;
   color: #848484;
@@ -3246,6 +4448,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Tooltip which displays more details about the mojang statuses. */
+
 #mojangStatusTooltip {
   position: absolute;
   visibility: hidden;
@@ -3266,6 +4469,7 @@ input:checked + .toggleSwitchSlider:before {
   box-shadow: 0px 0px 20px rgb(0, 0, 0);
   cursor: default;
 }
+
 #mojangStatusTooltip:after {
   content: " ";
   position: absolute;
@@ -3276,6 +4480,7 @@ input:checked + .toggleSwitchSlider:before {
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.75) transparent transparent transparent;
 }
+
 #mojangStatusWrapper:hover #mojangStatusTooltip {
   visibility: visible;
   opacity: 1;
@@ -3283,6 +4488,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Tooltip title for the mojang statuses. */
+
 #mojangStatusTooltipTitle {
   width: 100%;
   text-align: center;
@@ -3291,6 +4497,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Wrapper container for the non essential services title. */
+
 #mojangStatusNEContainer {
   display: flex;
   align-items: center;
@@ -3298,6 +4505,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* White bar which surrounds the non essential service title. */
+
 .mojangStatusNEBar {
   height: 1px;
   width: 100%;
@@ -3305,6 +4513,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Non essential service title text. */
+
 #mojangStatusNETitle {
   font-size: 10px;
   padding: 0px 3px;
@@ -3313,11 +4522,13 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Wrapper container for mojang service information. */
+
 .mojangStatusContainer {
   display: flex;
 }
 
 /* Displays the name of the mojang service. */
+
 .mojangStatusName {
   width: 100%;
   font-size: 10px;
@@ -3327,6 +4538,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Displays the status of the mojang service. */
+
 .mojangStatusIcon {
   margin-right: 10px;
   font-size: 18.5px;
@@ -3338,16 +4550,19 @@ input:checked + .toggleSwitchSlider:before {
 * * */
 
 /* Button which opens the news view. */
+
 #newsButton {
   background: none;
   border: none;
   cursor: pointer;
   outline: none;
 }
+
 #newsButton:hover #newsButtonText,
 #newsButton:focus #newsButtonText {
   text-shadow: 0px 0px 20px #fff, 0px 0px 20px #fff;
 }
+
 #newsButton:active {
   color: #c7c7c7;
   text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
@@ -3357,17 +4572,21 @@ input:checked + .toggleSwitchSlider:before {
 #newsButton:focus #newsButtonSVG {
   -webkit-filter: drop-shadow(0px 0px 2px #fff);
 }
+
 #newsButton:active #newsButtonSVG .arrowLine {
   stroke: #c7c7c7;
 }
+
 #newsButton:active #newsButtonSVG {
   -webkit-filter: drop-shadow(0px 0px 2px #c7c7c7);
 }
+
 #newsButton:disabled #newsButtonSVG .arrowLine {
   stroke: rgba(255, 255, 255, 0.75);
 }
 
 /* Icon which indicates there is new news. */
+
 #newsButtonAlert {
   width: 5px;
   height: 5px;
@@ -3379,6 +4598,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Arrow image which floats above the news button. */
+
 #newsButtonSVG {
   height: 11px;
   margin-left: -2px;
@@ -3386,6 +4606,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Span which contains the news button text. */
+
 #newsButtonText {
   color: white;
   font-weight: 900;
@@ -3402,6 +4623,7 @@ input:checked + .toggleSwitchSlider:before {
 * * */
 
 /* Main launch content container. */
+
 #landingContainer > #lower > #right #launch_content {
   position: relative;
   top: 25px;
@@ -3409,6 +4631,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* The launch button. */
+
 #launch_button {
   background: none;
   border: none;
@@ -3421,14 +4644,17 @@ input:checked + .toggleSwitchSlider:before {
   transition: 0.25s ease;
   outline: none;
 }
+
 #launch_button:hover,
 #launch_button:focus {
   text-shadow: 0px 0px 20px #fff, 0px 0px 20px #fff;
 }
+
 #launch_button:active {
   color: #c7c7c7;
   text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
 }
+
 #launch_button:disabled {
   color: #c7c7c7;
   cursor: default;
@@ -3436,6 +4662,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Launch details main container, hidden until launch processing begins. */
+
 #launch_details {
   position: relative;
   top: 25px;
@@ -3443,11 +4670,13 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Left side of launch details container, displays percentage and a divider. */
+
 #launch_details_left {
   display: flex;
 }
 
 /* Span which displays percentage complete. */
+
 #launch_progress_label {
   font-weight: 900;
   letter-spacing: 1px;
@@ -3459,6 +4688,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Right side of launch details container, displays progress bar and details. */
+
 #launch_details_right {
   display: flex;
   flex-direction: column;
@@ -3466,6 +4696,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Button which opens the server selection view. */
+
 #server_selection_button {
   background: none;
   border: none;
@@ -3475,29 +4706,35 @@ input:checked + .toggleSwitchSlider:before {
   padding: 0px;
   transition: 0.25s ease;
 }
+
 #server_selection_button:hover,
 #server_selection_button:focus {
   text-shadow: 0px 0px 20px #fff, 0px 0px 20px #fff, 0px 0px 20px #fff;
 }
+
 #server_selection_button:active {
   color: #c7c7c7;
   text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
 }
 
 /* Progress bar styles. */
+
 #launch_progress[value] {
   height: 3px;
   width: 265px;
   -webkit-appearance: none;
 }
+
 #launch_progress[value]::-webkit-progress-bar {
   background-color: transparent;
 }
+
 #launch_progress[value]::-webkit-progress-value {
   background-color: #fff;
 }
 
 /* Span which displays information about the status of the launch process. */
+
 #launch_details_text {
   font-size: 11px;
   text-overflow: ellipsis;
@@ -3516,6 +4753,7 @@ input:checked + .toggleSwitchSlider:before {
 * * */
 
 /* Overlay container, placed over the main div. */
+
 #overlayContainer {
   position: absolute;
   z-index: 500;
@@ -3529,6 +4767,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Main overlay content. */
+
 #overlayContent {
   position: relative;
   display: flex;
@@ -3544,33 +4783,40 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Main overlay content anchor styles. */
+
 #overlayContent a,
 #overlayDismiss {
   color: rgba(202, 202, 202, 0.75);
   transition: 0.25s ease;
 }
+
 #overlayContent a:hover,
 #overlayContent a:focus,
 #overlayDismiss:focus {
   color: rgba(255, 255, 255, 0.75);
 }
+
 #overlayContent a:active,
 #overlayDismiss:active {
   color: rgba(165, 165, 165, 0.75);
 }
 
 /* Add spacing between overlay content elements. */
+
 #overlayContent > *:first-child {
   margin-top: 0px !important;
 }
+
 #overlayContent > *:last-child {
   margin-bottom: 0px !important;
 }
+
 #overlayContent > * {
   margin: 8px 0px;
 }
 
 /* Overlay title styles. */
+
 #overlayTitle {
   font-family: "Avenir Medium";
   font-size: 20px;
@@ -3580,6 +4826,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Overlay description styles. */
+
 #overlayDesc {
   font-size: 12px;
   font-weight: bold;
@@ -3587,6 +4834,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Div which contains action buttons. */
+
 #overlayActionContainer {
   display: flex;
   flex-direction: column;
@@ -3594,6 +4842,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Overlay acknowledge button styles. */
+
 #overlayAcknowledge {
   background: none;
   border: 1px solid #ffffff;
@@ -3605,17 +4854,20 @@ input:checked + .toggleSwitchSlider:before {
   cursor: pointer;
   transition: 0.25s ease;
 }
+
 #overlayAcknowledge:hover,
 #overlayAcknowledge:focus {
   box-shadow: 0px 0px 10px 0px #fff;
   outline: none;
 }
+
 #overlayAcknowledge:active {
   border-color: rgba(255, 255, 255, 0.75);
   color: rgba(255, 255, 255, 0.75);
 }
 
 /* Overlay dismiss option styles. */
+
 #overlayDismiss {
   font-weight: bold;
   font-size: 10px;
@@ -3626,9 +4878,11 @@ input:checked + .toggleSwitchSlider:before {
   outline: none;
   cursor: pointer;
 }
+
 #overlayDismiss:hover {
   color: rgba(255, 255, 255, 0.75);
 }
+
 #overlayDismiss:active {
   color: rgba(165, 165, 165, 0.75);
 }
@@ -3638,6 +4892,7 @@ input:checked + .toggleSwitchSlider:before {
 * * */
 
 /* Server selection content container. */
+
 #serverSelectContent,
 #accountSelectContent {
   display: flex;
@@ -3648,6 +4903,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Server selection header. */
+
 #serverSelectHeader,
 #accountSelectHeader {
   font-family: "Avenir Medium";
@@ -3658,6 +4914,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Wrapper div for the list of available servers. */
+
 #serverSelectList,
 #accountSelectList {
   display: flex;
@@ -3669,19 +4926,23 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Scrollable div which lists the available servers. */
+
 #serverSelectListScrollable,
 #accountSelectListScrollable {
   padding: 0px 5px;
   overflow-y: scroll;
 }
+
 #serverSelectListScrollable::-webkit-scrollbar,
 #accountSelectListScrollable::-webkit-scrollbar {
   width: 2px;
 }
+
 #serverSelectListScrollable::-webkit-scrollbar-track,
 #accountSelectListScrollable::-webkit-scrollbar-track {
   display: none;
 }
+
 #serverSelectListScrollable::-webkit-scrollbar-thumb,
 #accountSelectListScrollable::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -3689,6 +4950,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Content container for a server listing. */
+
 .serverListing {
   border: none;
   padding: 0px;
@@ -3703,10 +4965,12 @@ input:checked + .toggleSwitchSlider:before {
   position: relative;
   background: rgba(131, 131, 131, 0.25);
 }
+
 .serverListing[selected] {
   cursor: default;
   opacity: 1;
 }
+
 .serverListing:hover,
 .serverListing:focus {
   outline: none;
@@ -3728,10 +4992,12 @@ input:checked + .toggleSwitchSlider:before {
   position: relative;
   background: rgba(0, 0, 0, 0.25);
 }
+
 .accountListing[selected] {
   cursor: default;
   opacity: 1;
 }
+
 .accountListing:hover,
 .accountListing:focus {
   outline: none;
@@ -3746,21 +5012,25 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Add spacing between server listings. */
+
 #serverSelectListScrollable > .serverListing:not(:first-child):not(:last-child),
 #accountSelectListScrollable
   > .accountListing:not(:first-child):not(:last-child) {
   margin: 5px 0px;
 }
+
 #serverSelectListScrollable > .serverListing:first-child,
 #accountSelectListScrollable > .accountListing:first-child {
   margin-bottom: 5px;
 }
+
 #serverSelectListScrollable > .serverListing:last-child,
 #accountSelectListScrollable > .accountListing:last-child {
   margin-top: 5px;
 }
 
 /* Server listing image. */
+
 .serverListingImg {
   margin: 0px 10px 0px 5px;
   border: 1px solid #fff;
@@ -3769,6 +5039,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Content container for the server listing's details. */
+
 .serverListingDetails {
   display: flex;
   flex-direction: column;
@@ -3778,12 +5049,14 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* The name of the server listing. */
+
 .serverListingName {
   font-size: 14px;
   font-weight: bold;
 }
 
 /* Description for the server listing. */
+
 .serverListingDescription {
   font-size: 10px;
   line-height: 10px;
@@ -3792,6 +5065,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Content container for the server listing's information. */
+
 .serverListingInfo {
   width: 100%;
   display: flex;
@@ -3799,6 +5073,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* The minecraft version of the server listing. */
+
 .serverListingVersion {
   font-size: 10px;
   text-align: center;
@@ -3813,6 +5088,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* The revision version of the server's manifest. */
+
 .serverListingRevision {
   color: #969696;
   font-size: 10px;
@@ -3821,6 +5097,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Star which indicates the default (main) server. */
+
 .serverListingStarWrapper {
   display: flex;
   align-items: center;
@@ -3828,7 +5105,9 @@ input:checked + .toggleSwitchSlider:before {
   height: 12px;
   position: relative;
 }
+
 /* Tooltip which displays when hovering over the star. */
+
 .serverListingStarTooltip {
   visibility: hidden;
   opacity: 0;
@@ -3842,16 +5121,19 @@ input:checked + .toggleSwitchSlider:before {
   font-size: 10px;
   transition: visibility 0s linear 0.25s, opacity 0.25s ease;
 }
+
 .serverListingStarTooltip::after {
   content: " ";
   position: absolute;
   top: 50%;
-  right: 100%; /* To the left of the tooltip */
+  right: 100%;
+  /* To the left of the tooltip */
   margin-top: -5px;
   border-width: 5px;
   border-style: solid;
   border-color: transparent rgba(0, 0, 0, 0.4) transparent transparent;
 }
+
 .serverListingStarWrapper:hover .serverListingStarTooltip {
   visibility: visible;
   opacity: 1;
@@ -3859,6 +5141,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Content container which contains the server select actions. */
+
 #serverSelectActions,
 #accountSelectActions {
   display: flex;
@@ -3869,6 +5152,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Server selection confirm button styles. */
+
 #serverSelectConfirm,
 #accountSelectConfirm {
   background: none;
@@ -3882,6 +5166,7 @@ input:checked + .toggleSwitchSlider:before {
   transition: 0.25s ease;
   min-height: 20.67px;
 }
+
 #serverSelectConfirm:hover,
 #serverSelectConfirm:focus,
 #accountSelectConfirm:hover,
@@ -3889,6 +5174,7 @@ input:checked + .toggleSwitchSlider:before {
   box-shadow: 0px 0px 10px 0px #fff;
   outline: none;
 }
+
 #serverSelectConfirm:active,
 #accountSelectConfirm:active {
   border-color: rgba(255, 255, 255, 0.75);
@@ -3896,6 +5182,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Server selection cancel button styles. */
+
 #serverSelectCancel,
 #accountSelectCancel {
   font-weight: bold;
@@ -3909,12 +5196,14 @@ input:checked + .toggleSwitchSlider:before {
   outline: none;
   cursor: pointer;
 }
+
 #serverSelectCancel:hover,
 #serverSelectCancel:focus,
 #accountSelectCancel:hover,
 #accountSelectCancel:focus {
   color: rgba(255, 255, 255, 0.75);
 }
+
 #serverSelectCancel:active,
 #accountSelectCancel:active {
   color: rgba(165, 165, 165, 0.75);
@@ -3927,6 +5216,7 @@ input:checked + .toggleSwitchSlider:before {
  ******************************************************************************/
 
 /* Loading container, placed above everything. */
+
 #loadingContainer {
   position: absolute;
   z-index: 400;
@@ -3938,6 +5228,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Loading content container. */
+
 #loadingContent {
   position: relative;
   display: flex;
@@ -3947,6 +5238,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Spinner container. */
+
 #loadSpinnerContainer {
   position: relative;
   display: flex;
@@ -3955,6 +5247,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Stationary image for the spinner. */
+
 #loadCenterImage {
   position: absolute;
   width: 277px;
@@ -3962,6 +5255,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Rotating image for the spinner. */
+
 #loadSpinnerImage {
   width: 280px;
   height: auto;
@@ -3969,16 +5263,19 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 /* Rotating animation for the spinner. */
+
 @keyframes rotating {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 /* Class which is applied when the spinner image is spinning. */
+
 .rotating {
   animation: rotating 10s linear infinite;
 }
