@@ -65,7 +65,6 @@ function getCurrentView() {
 }
 
 async function showMainUI(data) {
-  console.log("1");
   if (!isDev) {
     loggerAutoUpdater.info("Initializing..");
     ipcRenderer.send(
@@ -75,21 +74,14 @@ async function showMainUI(data) {
     );
   }
 
-  console.log("2");
   await prepareSettings(true);
   updateSelectedServer(data.getServerById(ConfigManager.getSelectedServer()));
-  console.log("3");
   //refreshServerStatus();
-  console.log("4");
   setTimeout(() => {
-    console.log("5");
     document.getElementById("frameBar").style.backgroundColor =
       "rgba(0, 0, 0, 0.5)";
-    console.log("6");
     document.body.style.backgroundImage = `url('assets/images/backgrounds/Background.jpg')`;
-    console.log("7");
     $("#main").show();
-    console.log("8");
 
     const isLoggedIn = Object.keys(ConfigManager.getAuthAccounts()).length > 0;
 

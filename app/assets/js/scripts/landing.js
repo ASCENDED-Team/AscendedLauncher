@@ -159,7 +159,7 @@ document.getElementById("avatarOverlay").onclick = async (e) => {
 // Bind About button.
 document.getElementById("aboutOverlay").onclick = async (e) => {
   await prepareSettings();
-  switchView(getCurrentView(), VIEWS.about, 500, 500, () => {
+  switchView(getCurrentView(), VIEWS.settings, 500, 500, () => {
     settingsNavItemListener(
       document.getElementById("settingsNavAccount"),
       false
@@ -300,7 +300,7 @@ const refreshServerStatus = async (fade = false) => {
   }
 };
 
-refreshMojangStatuses();
+//refreshMojangStatuses();
 // Server Status is refreshed in uibinder.js on distributionIndexDone.
 
 // Refresh statuses every hour. The status page itself refreshes every day so...
@@ -731,99 +731,7 @@ async function dlAsync(login = true) {
  */
 
 // DOM Cache
-const newsContent = document.getElementById("newsContent");
-const newsArticleTitle = document.getElementById("newsArticleTitle");
-const newsArticleDate = document.getElementById("newsArticleDate");
-const newsArticleAuthor = document.getElementById("newsArticleAuthor");
-const newsArticleComments = document.getElementById("newsArticleComments");
-const newsNavigationStatus = document.getElementById("newsNavigationStatus");
-const newsArticleContentScrollable = document.getElementById(
-  "newsArticleContentScrollable"
-);
 const nELoadSpan = document.getElementById("nELoadSpan");
-
-// News slide caches.
-let newsActive = false;
-let newsGlideCount = 0;
-
-/**
- * Show the news UI via a slide animation.
- *
- * @param {boolean} up True to slide up, otherwise false.
- */
-function slide_(up) {
-  const lCUpper = document.querySelector("#landingContainer > #upper");
-  const lCLLeft = document.querySelector("#landingContainer > #lower > #left");
-  const lCLCenter = document.querySelector(
-    "#landingContainer > #lower > #center"
-  );
-  const lCLRight = document.querySelector(
-    "#landingContainer > #lower > #right"
-  );
-  const newsBtn = document.querySelector(
-    "#landingContainer > #lower > #center #content"
-  );
-  const landingContainer = document.getElementById("landingContainer");
-  const newsContainer = document.querySelector(
-    "#landingContainer > #newsContainer"
-  );
-
-  newsGlideCount++;
-
-  if (up) {
-    lCUpper.style.top = "-200vh";
-    lCLLeft.style.top = "-200vh";
-    lCLCenter.style.top = "-200vh";
-    lCLRight.style.top = "-200vh";
-    newsBtn.style.top = "130vh";
-    newsContainer.style.top = "0px";
-    //date.toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric'})
-    //landingContainer.style.background = 'rgba(29, 29, 29, 0.55)'
-    landingContainer.style.background = "rgba(0, 0, 0, 0.50)";
-    setTimeout(() => {
-      if (newsGlideCount === 1) {
-        lCLCenter.style.transition = "none";
-        newsBtn.style.transition = "none";
-      }
-      newsGlideCount--;
-    }, 2000);
-  } else {
-    setTimeout(() => {
-      newsGlideCount--;
-    }, 2000);
-    landingContainer.style.background = null;
-    lCLCenter.style.transition = null;
-    newsBtn.style.transition = null;
-    newsContainer.style.top = "100%";
-    lCUpper.style.top = "0px";
-    lCLLeft.style.top = "0px";
-    lCLCenter.style.top = "0px";
-    lCLRight.style.top = "0px";
-    newsBtn.style.top = "10px";
-  }
-}
-
-// Bind news button.
-document.getElementById("newsButton").onclick = () => {
-  // Toggle tabbing.
-  if (newsActive) {
-    $("#landingContainer *").removeAttr("tabindex");
-    $("#newsContainer *").attr("tabindex", "-1");
-  } else {
-    $("#landingContainer *").attr("tabindex", "-1");
-    $("#newsContainer, #newsContainer *, #lower, #lower #center *").removeAttr(
-      "tabindex"
-    );
-    if (newsAlertShown) {
-      $("#newsButtonAlert").fadeOut(2000);
-      newsAlertShown = false;
-      ConfigManager.setNewsCacheDismissed(true);
-      ConfigManager.save();
-    }
-  }
-  slide_(!newsActive);
-  newsActive = !newsActive;
-};
 
 // Array to store article meta.
 let newsArr = null;
@@ -865,17 +773,6 @@ newsErrorRetry.onclick = () => {
   });
 };
 
-newsArticleContentScrollable.onscroll = (e) => {
-  if (
-    e.target.scrollTop >
-    Number.parseFloat($(".newsArticleSpacerTop").css("height"))
-  ) {
-    newsContent.setAttribute("scrolled", "");
-  } else {
-    newsContent.removeAttribute("scrolled");
-  }
-};
-
 /**
  * Reload the news without restarting.
  *
@@ -891,16 +788,6 @@ function reloadNews() {
       });
     });
   });
-}
-
-let newsAlertShown = false;
-
-/**
- * Show the news alert indicating there is new news.
- */
-function showNewsAlert() {
-  newsAlertShown = true;
-  $(newsButtonAlert).fadeIn(250);
 }
 
 /**
@@ -961,20 +848,16 @@ function initNews() {
             // Compare Content
             if (cached.content !== newHash) {
               isNew = true;
-              showNewsAlert();
             } else {
               if (!cached.dismissed) {
                 isNew = true;
-                showNewsAlert();
               }
             }
           } else {
             isNew = true;
-            showNewsAlert();
           }
         } else {
           isNew = true;
-          showNewsAlert();
         }
 
         if (isNew) {
@@ -986,28 +869,8 @@ function initNews() {
           ConfigManager.save();
         }
 
-        const switchHandler = (forward) => {
-          let cArt = parseInt(newsContent.getAttribute("article"));
-          let nxtArt = forward
-            ? cArt >= newsArr.length - 1
-              ? 0
-              : cArt + 1
-            : cArt <= 0
-            ? newsArr.length - 1
-            : cArt - 1;
-
-          displayArticle(newsArr[nxtArt], nxtArt + 1);
-        };
-
-        document.getElementById("newsNavigateRight").onclick = () => {
-          switchHandler(true);
-        };
-        document.getElementById("newsNavigateLeft").onclick = () => {
-          switchHandler(false);
-        };
-
         $("#newsErrorContainer").fadeOut(250, () => {
-          displayArticle(newsArr[0], 1);
+          renderNewsArticles(newsArr.slice(-3));
           $("#newsContent").fadeIn(250, () => {
             resolve();
           });
@@ -1017,65 +880,31 @@ function initNews() {
   });
 }
 
-/**
- * Add keyboard controls to the news UI. Left and right arrows toggle
- * between articles. If you are on the landing page, the up arrow will
- * open the news UI.
- */
-document.addEventListener("keydown", (e) => {
-  if (newsActive) {
-    if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-      document
-        .getElementById(
-          e.key === "ArrowRight" ? "newsNavigateRight" : "newsNavigateLeft"
-        )
-        .click();
-    }
-    // Interferes with scrolling an article using the down arrow.
-    // Not sure of a straight forward solution at this point.
-    // if(e.key === 'ArrowDown'){
-    //     document.getElementById('newsButton').click()
-    // }
-  } else {
-    if (getCurrentView() === VIEWS.landing) {
-      if (e.key === "ArrowUp") {
-        document.getElementById("newsButton").click();
-      }
-    }
-  }
-});
+function renderNewsArticles(newsArr) {
+  const newsContainer = document.querySelector("#newsGridContainer");
+  newsContainer.innerHTML = "";
 
-/**
- * Display a news article on the UI.
- *
- * @param {Object} articleObject The article meta object.
- * @param {number} index The article index.
- */
-function displayArticle(articleObject, index) {
-  newsArticleTitle.innerHTML = articleObject.title;
-  newsArticleTitle.href = articleObject.link;
-  newsArticleAuthor.innerHTML = "by " + articleObject.author;
-  newsArticleDate.innerHTML = articleObject.date;
-  newsArticleComments.innerHTML = articleObject.comments;
-  newsArticleComments.href = articleObject.commentsLink;
-  newsArticleContentScrollable.innerHTML =
-    '<div id="newsArticleContentWrapper"><div class="newsArticleSpacerTop"></div>' +
-    articleObject.content +
-    '<div class="newsArticleSpacerBot"></div></div>';
-  Array.from(
-    newsArticleContentScrollable.getElementsByClassName("bbCodeSpoilerButton")
-  ).forEach((v) => {
-    v.onclick = () => {
-      const text =
-        v.parentElement.getElementsByClassName("bbCodeSpoilerText")[0];
-      text.style.display = text.style.display === "block" ? "none" : "block";
-    };
+  newsArr.forEach((article) => {
+    const newsItem = `
+      <div class="max-w-sm rounded overflow-hidden shadow-lg bg-[#ffffff05]">
+        <img class="w-full h-36" src="${article.image}"> <!-- Stellen Sie sicher, dass 'imageUrl' korrekt ist -->
+        <div class="px-6 pt-4">
+          <p class="text-gray-500 text-sm">${article.content}</p>
+        </div>
+        <div class="flex justify-between items-end px-6 pb-4">
+          <p class="inline-block text-gray-500 text-xs">Posted by <span class="text-[#563adfb6]">${article.author}</span></p>
+          <a
+              href="${article.link}"
+              class="px-2 py-1 bg-[#553adf] text-xs font-medium rounded-sm transition-all duration-200 shadow-[0_0px_30px_-5px_#694ef3] hover:shadow-[0_0px_30px_-3px_#694ef3] outline outline-1 hover:outline-[3px] hover:-outline-offset-[3px] -outline-offset-1 outline-[#6950e6] cursor-pointer"
+            >
+            WEITERLESEN
+          </a>
+        </div>
+      </div>
+    `;
+
+    newsContainer.innerHTML += newsItem; // Fügen Sie das neue Element zum Container hinzu
   });
-  newsNavigationStatus.innerHTML = Lang.query(
-    "ejs.landing.newsNavigationStatus",
-    { currentPage: index, totalPages: newsArr.length }
-  );
-  newsContent.setAttribute("article", index - 1);
 }
 
 /**
@@ -1129,12 +958,14 @@ async function loadNews() {
             );
           }
 
-          let link = el.find("link").text();
+          let image = el.find("image").text();
+          let link = el.find("url").text();
           let title = el.find("title").text();
           let author = el.find("dc\\:creator").text();
 
           // Generate article.
           articles.push({
+            image,
             link,
             title,
             date,

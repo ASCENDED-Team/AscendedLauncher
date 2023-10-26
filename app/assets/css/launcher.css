@@ -2846,10 +2846,6 @@ input:checked + .toggleSwitchSlider:before {
 .newsErrorContent {
   font-size: 20px;
 }
-#newsErrorLoading {
-  display: flex;
-  width: 168.92px;
-}
 #nELoadSpan {
   white-space: pre;
 }
