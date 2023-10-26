@@ -282,8 +282,8 @@ let win;
 
 function createWindow() {
   win = new BrowserWindow({
-    width: 1120,
-    height: 635,
+    width: 1315,
+    height: 740,
     icon: getPlatformIcon("SealCircle"),
     frame: false,
     webPreferences: {
@@ -291,9 +291,11 @@ function createWindow() {
       nodeIntegration: true,
       contextIsolation: false,
     },
-    backgroundColor: "#171614",
+    resizable: false,
+    backgroundColor: "#0F0F11",
   });
   remoteMain.enable(win.webContents);
+  win.resizable = false;
 
   if (process.env.NODE_ENV === "development") {
     win.webContents.openDevTools();
@@ -317,8 +319,6 @@ function createWindow() {
     })*/
 
   win.removeMenu();
-
-  win.resizable = true;
 
   win.on("closed", () => {
     win = null;
