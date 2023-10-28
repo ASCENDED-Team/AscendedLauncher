@@ -1017,17 +1017,16 @@ video {
   padding-bottom: 0.5rem;
 }
 
-.py-4 /* comment, punctuation.definition.comment, string.comment */ {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
 .pb-2 /* comment, punctuation.definition.comment, string.comment */ {
   padding-bottom: 0.5rem;
 }
 
 .pb-3 /* comment, punctuation.definition.comment, string.comment */ {
   padding-bottom: 0.75rem;
+}
+
+.pb-4 /* comment, punctuation.definition.comment, string.comment */ {
+  padding-bottom: 1rem;
 }
 
 .pr-2 /* comment, punctuation.definition.comment, string.comment */ {
@@ -1040,10 +1039,6 @@ video {
 
 .pt-4 /* comment, punctuation.definition.comment, string.comment */ {
   padding-top: 1rem;
-}
-
-.pb-4 /* comment, punctuation.definition.comment, string.comment */ {
-  padding-bottom: 1rem;
 }
 
 .font-\[\'Objective-Bold\'\] /* comment, punctuation.definition.comment, string.comment */ {
@@ -5559,12 +5554,15 @@ svg {
 
 /* Loading content container. */
 
-#loadingContent {
-  position: relative;
+#loadingContainer {
+  position: absolute;
+  overflow: hidden;
+  z-index: 400;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: calc(100% - 22px);
 }
 
 /* Spinner container. */

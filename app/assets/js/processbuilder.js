@@ -72,6 +72,7 @@ class ProcessBuilder {
     }
 
     logger.info("Launch Arguments:", args);
+    ipcRenderer.send("changeActivity", "im Spiel", this.server.rawServer.name);
 
     const child = child_process.spawn(
       ConfigManager.getJavaExecutable(this.server.rawServer.id),
@@ -103,6 +104,7 @@ class ProcessBuilder {
     });
     child.on("close", (code, signal) => {
       logger.info("Exited with code", code);
+      ipcRenderer.send("changeActivity", "im Launcher", "Main Menu");
       fs.remove(tempNativePath, (err) => {
         if (err) {
           logger.warn("Error while deleting temp dir", err);

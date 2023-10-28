@@ -53,6 +53,32 @@ function switchView(
       await onNextFade();
     });
   });
+
+  switch (next) {
+    case VIEWS.landing:
+      ipcRenderer.send("changeActivity", "im Launcher", "Main Menu");
+      break;
+
+    case VIEWS.settings:
+      ipcRenderer.send(
+        "changeActivity",
+        "im Launcher",
+        "Bearbeitet Einstellungen"
+      );
+      break;
+
+    case VIEWS.login:
+      ipcRenderer.send("changeActivity", "im Launcher", "Meldet sich an");
+      break;
+
+    case VIEWS.waiting:
+      ipcRenderer.send("changeActivity", "im Launcher", "Fügt Konto hinzu");
+      break;
+
+    default:
+      ipcRenderer.send("changeActivity", "im Launcher", "Main Menu");
+      break;
+  }
 }
 
 /**
@@ -77,7 +103,9 @@ async function showMainUI(data) {
   await prepareSettings(true);
   updateSelectedServer(data.getServerById(ConfigManager.getSelectedServer()));
   //refreshServerStatus();
-  setTimeout(() => {
+
+  if (ConfigManager.getSkipIntro()) {
+    $("#loadingContainer").fadeOut(0);
     document.getElementById("frameBar").style.backgroundColor =
       "rgba(0, 0, 0, 0.5)";
     document.body.style.backgroundImage = `url('assets/images/backgrounds/Background.jpg')`;
@@ -106,13 +134,40 @@ async function showMainUI(data) {
         $(VIEWS.loginOptions).fadeIn(1000);
       }
     }
-
+  } else {
     setTimeout(() => {
-      $("#loadingContainer").fadeOut(500, () => {
-        $("#loadSpinnerImage").removeClass("rotating");
-      });
-    }, 250);
-  }, 750);
+      $("#loadingContainer").fadeOut(500);
+      document.getElementById("frameBar").style.backgroundColor =
+        "rgba(0, 0, 0, 0.5)";
+      document.body.style.backgroundImage = `url('assets/images/backgrounds/Background.jpg')`;
+      $("#main").show();
+
+      const isLoggedIn =
+        Object.keys(ConfigManager.getAuthAccounts()).length > 0;
+
+      // If this is enabled in a development environment we'll get ratelimited.
+      // The relaunch frequency is usually far too high.
+      if (!isDev && isLoggedIn) {
+        validateSelectedAccount();
+      }
+
+      if (ConfigManager.isFirstLaunch()) {
+        currentView = VIEWS.welcome;
+        $(VIEWS.welcome).fadeIn(1000);
+      } else {
+        if (isLoggedIn) {
+          currentView = VIEWS.landing;
+          $(VIEWS.landing).fadeIn(1000);
+        } else {
+          loginOptionsCancelEnabled(false);
+          loginOptionsViewOnLoginSuccess = VIEWS.landing;
+          loginOptionsViewOnLoginCancel = VIEWS.loginOptions;
+          currentView = VIEWS.loginOptions;
+          $(VIEWS.loginOptions).fadeIn(1000);
+        }
+      }
+    }, 8000);
+  }
   // Disable tabbing to the news container.
   initNews().then(() => {
     $("#newsContainer *").attr("tabindex", "-1");

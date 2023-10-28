@@ -4,6 +4,8 @@ remoteMain.initialize();
 // Requirements
 const { app, BrowserWindow, ipcMain, Menu, shell } = require("electron");
 const autoUpdater = require("electron-updater").autoUpdater;
+const discordRPC = require("discord-rpc");
+const clientId = "1167834035393941584";
 const ejse = require("ejs-electron");
 const fs = require("fs");
 const isDev = require("./app/assets/js/isdev");
@@ -18,6 +20,32 @@ const {
   SHELL_OPCODE,
 } = require("./app/assets/js/ipcconstants");
 const LangLoader = require("./app/assets/js/langloader");
+const rpc = new discordRPC.Client({ transport: "ipc" });
+
+// Diese Funktion wird aufgerufen, wenn der RPC-Client bereit ist
+async function setActivity(title, state) {
+  rpc.setActivity({
+    details: title,
+    state: state,
+    largeImageKey: "logo",
+    startTimestamp: new Date(),
+    buttons: [
+      { label: "Discord Server", url: "https://discord.gg/6HCGC4472J" },
+    ],
+  });
+}
+
+rpc.on("ready", () => {
+  console.log("Verbunden mit Discord!");
+  setActivity("im Launcher", "Main Menu");
+});
+
+// Logge den RPC-Client in Discord ein
+rpc.login({ clientId }).catch(console.error);
+
+ipcMain.on("changeActivity", (event, title, state) => {
+  setActivity(title, state);
+});
 
 // Setup Lang
 LangLoader.setupLanguage();

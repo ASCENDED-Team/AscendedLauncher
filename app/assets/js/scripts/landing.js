@@ -116,6 +116,11 @@ document
         await asyncSystemScan(server.effectiveJavaOptions);
       } else {
         setLaunchDetails(Lang.queryJS("landing.launch.pleaseWait"));
+        ipcRenderer.send(
+          "changeActivity",
+          "Startet das Spiel",
+          server.rawServer.name
+        );
         toggleLaunchArea(true);
         setLaunchPercentage(0, 100);
 

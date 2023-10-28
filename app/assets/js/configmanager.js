@@ -99,6 +99,7 @@ const DEFAULT_CONFIG = {
     },
     launcher: {
       allowPrerelease: false,
+      skipIntro: false,
       dataDirectory: dataPath,
     },
   },
@@ -840,4 +841,25 @@ exports.getAllowPrerelease = function (def = false) {
  */
 exports.setAllowPrerelease = function (allowPrerelease) {
   config.settings.launcher.allowPrerelease = allowPrerelease;
+};
+
+/**
+ * Check if the intro should be skipped.
+ *
+ * @param {boolean} def Optional. If true, the default value will be returned.
+ * @returns {boolean} Whether or not the launcher should download prerelease versions.
+ */
+exports.getSkipIntro = function (def = false) {
+  return !def
+    ? config.settings.launcher.skipIntro
+    : DEFAULT_CONFIG.settings.launcher.skipIntro;
+};
+
+/**
+ * Change the status of Whether or not the launcher should download prerelease versions.
+ *
+ * @param {boolean} launchDetached Whether or not the launcher should download prerelease versions.
+ */
+exports.setSkipIntro = function (skipIntro) {
+  config.settings.launcher.skipIntro = skipIntro;
 };

@@ -3871,12 +3871,15 @@ svg {
 }
 
 /* Loading content container. */
-#loadingContent {
-  position: relative;
+#loadingContainer {
+  position: absolute;
+  overflow: hidden;
+  z-index: 400;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: calc(100% - 22px);
 }
 
 /* Spinner container. */
