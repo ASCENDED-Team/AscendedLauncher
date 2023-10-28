@@ -166,7 +166,7 @@ async function showMainUI(data) {
           $(VIEWS.loginOptions).fadeIn(1000);
         }
       }
-    }, 8000);
+    }, 6000);
   }
   // Disable tabbing to the news container.
   initNews().then(() => {

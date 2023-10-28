@@ -747,6 +747,10 @@ video {
   bottom: 0px;
 }
 
+.bottom-6 /* comment, punctuation.definition.comment, string.comment */ {
+  bottom: 1.5rem;
+}
+
 .left-1\/2 /* comment, punctuation.definition.comment, string.comment */ {
   left: 50%;
 }
